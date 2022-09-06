@@ -1,0 +1,330 @@
+\begin{definition}
+    Линейный оператор --- линейное отображение (линейный эндоморфизм) $\CA\!: V \to V$.
+
+    Кольцо операторов --- $End(V)\quad (+, \cdot)$ с единицей, алгебра над $V$.
+\end{definition}
+\begin{definition}
+    Алгебра над $K$ --- кольцо  $(A, +, \cdot)$ являющееся векторным пространством над  $K$.
+
+    Причем $\forall a, b \in A, k \in K\!: k(ab) = a(kb) = (ka)b$.
+\end{definition}
+\begin{remark}
+    $A$ --- алгебра с 1  $\implies$ задан гомоморфизм колец  $i\!: K\to A$ ($k \leadsto k \cdot 1$).
+
+    Обратно: задан $i\!: K \to A$  $\Im i \subset Z(a) \implies A$ превращается в алгебру над $K$.
+\end{remark}
+\begin{example}
+    $K[x]$ --- алгебра над  $K$.
+\end{example}
+\begin{example}
+    $K \subset F$ --- поля.  $F$ --- алгебра над  $K$.  $\CC$ --- алгебра над  $\R$.
+\end{example}
+\begin{example}
+    $A = End(V) \cong M_n(K), n = \dim V$.
+\end{example}
+\begin{remark}[Напоминание]
+    $\CA\!: V \to V$,  $e_1, \ldots, e_n$ --- базис.
+
+    $\CA(e_i) = \sum a_{ij} e_j \implies (a_{ji})$ --- матрица  $\CA$ в базисе  $\{e_i\}$.  $A = [\CA]_{\{e_i\}}$.
+
+    Пусть есть базисы $\{e_i\}, \{f_i\}$ и $C$ --- матрица перехода, тогда $[\CA]_{\{f_i\}} = C^{-1} A C$
+\end{remark}
+
+Вопросы:
+\begin{enumerate}
+    \item Классификация эндоморфизмов. $B = C^{-1}AC \iff B, A$ --- матрица одного оператора в разных базисах. Классификация --- определение классов сопряжения в  $M_n(K)$.
+    \item Распознавание типов отображений. $\CA$ --- оператор  $\leadsto$ по нему найти базис  $e_1, \ldots, e_n$, в котором матрица нашего оператора --- $A$ --- очень простая (содержит много нулей).
+
+        $\CA \in End(V)$, $K[t]$.  $A \in M_n(K)$. Тогда  $\exists!$ гомоморфизм  $P = \sum a_i t^i \to \sum a_i A^i$, $t_A\!: K[t] \to M_n(K), t \mapsto A$. 
+\end{enumerate}
+\begin{theorem}[Универсальное свойство кольца многочленов]
+	Пусть $\CA \in End(V), A \in M_n(K)$ и $K[t]$ --- кольцо многочленов.
+
+	Тогда существует единственный гомоморфизм $f_A : K[t] \to M_n(K)$ такой, что переменная $t$ переходит в матрицу $A$.
+
+	По сути это мы взяли какой-то многочлен, запишем его в каноничеством виде: $f = \sum_{i=0}^N a_i t^i$ и сопоставили ему $\sum_{i=0}^N a_i A^i$, буквально просто подставили многочлен в матрицу.
+
+	И это является гомоморфизмом, т.е. сумма многочленов эквивалентна сумме матриц, и аналогично с произведением. Нюанс с произведением --- вообще у нас произведение матриц некоммутативно, но тут все матрицы --- степени одной, так что всё окей.
+\end{theorem}
+\begin{example}
+	$f = t^2 - 1$ --- сопоставляем $A^2 - E = (A - E)(A + E)$, т.е. $(\CA - id) \circ (\CA + id) = \CA \circ \CA - id$
+\end{example}
+
+\begin{remark}
+	Если зафиксировать $\CA \in End(V) \leadsto V, K[t]$. Такая фиксация превращает $V$ в $K[t]$-модуль.
+
+	Теперь умеем умножать на элементы $K[t]$, а не только на элементы $K$, и теперь $t \cdot v = \CA(v)$
+        То есть теперь мы можем сделать  $t \cdot v \coloneqq A(v)$. В итоге,  $(v, \CA) \sim K[t]$ --- модуль + ОГИ.
+\end{remark}
+\begin{example}
+    $(t^2 + 2) \cdot v = \CA (\CA(v)) + 2v$
+\end{example}
+\begin{example}
+    $V_1, V_2$ --- векторные пространства над $K$ и заданы $\CA_i \in End(V_i)$. Тогда можно посмотреть на сумму этих пространств:
+
+    $\CA_1 \oplus \CA_2\!: V_1 \oplus V_2 \to V_1 \oplus V_2, \CA(v_1, v_2) = (\CA_1(v_1), \CA_2(v_2))$, $e_i$ --- базис  $V_1 \leadsto A_1$,  $f_i$ --- базис $V_2 \leadsto A_2$.
+
+    $\CA_i \in End(V_i)$, тогда  $(\CA_1 \oplus \CA_2)_{\{e_i\} \cup \{f_i\}} = \left[\begin{array}{c|c} A_1 & 0 \\ \hline 0 & A_2 \end{array} \right]$.
+\end{example}
+\begin{definition}
+    $\CA \in End(V)$.  $U \le V$ --- называется инвариантивным ($\CA$-инвариантивным), если $\CA(U) \subset U$.
+\end{definition}
+
+Пусть $V \cong V_1 \oplus V_2$, $V_1, V_2$ --- инвариативные подпространства. Тогда $[A]$ имеет вид  $\left(\begin{array}{c|c} A_1 & 0 \\ \hline 0 & A_2 \end{array} \right)$ в базисе объединения базисов $V_1$ и $V_2$.
+
+\begin{statement}
+    $\CA \in End(V), U \le V$ --- инвариантно.
+
+    Тогда, в базисе $U$ ($u_1, u_2,\ldots, u_k$) + как-то дополненном до  $V$, $[\CA]$ имеет вид $\left(\begin{array}{c|c} A_1 & B \\ \hline 0 & A_2 \end{array} \right)$, где  $A_1 = [\CA \Big|_u]_{u_1, u_2, \ldots, u_k}$.
+
+    Что такое $A_2$?  $\CA(u_{k+1}) = \underbrace{\sum\limits_{i=1}^k b_i u_i}_{\in U} + \underbrace{\sum\limits_{i=k+1}^n a_iu_i}_{u_0} \equiv \sum\limits_{k=1}^n a_i u_i \pmod U$.
+
+    $v_1 \equiv v_2 \pmod U \iff v_1 - v_2 \in U$
+    А множеством классов эквивалентности тут можно назвать пространство $V / U$ --- факторгруппа по сложению и умножению на скаляр.
+
+    $A_2 = [\CA \Big|_{V / U}]_{u_{k+1}, \ldots, u_n}$ --- на базисе дополнения $U$ до базиса  $V$.
+\end{statement}
+\begin{definition}
+	Факторпространство --- пусть есть $U \le V$, тогда введём отношение эквивалентности $v_1 \equiv v_2 \pmod U \iff v_1 - v_2 \in U$, тогда факторпространство по подпространству $U$ --- пространство $V \ U$, использованная выше факторгруппа.
+\end{definition}
+\begin{example}
+Картинка.
+
+\end{example}
+
+Теперь $\CA\!: V \to V$,  $U$ --- инвариантно относительно  $\mathcal{A} \implies $ корректна задана $\CA \Big|_{V / U} \in End(V / U)$. 
+
+$\CA(\overline{v}) \coloneqq \overline{\CA(v)}$. Это легко проверяется по определению:  $\overline{v} = \overline{v'} \iff v - v' \in U \implies \CA(v - v') \in U \iff \CA(v) - \CA(v') \in U \implies \overline{\CA(v)} = \overline{\CA(v')}$ в  $V / U$.
+
+\begin{statement}
+	Пусть $\CA \in End(V)$, U --- инвариантное подпространство, $u_1, \cdots, u_k, \cdots, u_n$ --- базис $V$ и при этом $u_1, \cdots, u_k$ --- базис $U$, тогда $[\CA]_{\{u_i\}} = \begin{pmatrix} A_1 & B \\ 0 & A_2  \end{pmatrix}$ и при этом $A_2 = \left[\CA \Big|_{V / U} \right]_{\overline{u_{k+1}}, \cdots,  \overline{u_{n}}}$.
+\end{statement}
+\begin{remark}
+    А ещё $\overline{u_{k+1}}, \overline{u_{k+2}}, \cdots, \overline{u_n}$ --- базис $V / U$
+\end{remark}
+
+$U$ --- инвариантное подпространство,  $\dim U = 1, U = \langle u \rangle, \CA(u) \subset \langle u \rangle$, то есть $\CA u = \lambda u$.
+
+\begin{definition}
+    Собственный вектор оператора $\CA$ назывется $v \in V \setminus \{0\}\!: \CA(v) = \lambda v$.
+
+    А $\lambda$ называется собственным числом оператора $\CA$.
+
+    $v$ --- собственный вектор  $\implies \langle v \rangle$ --- инвариативное подпространство --- неподвижная прямая.
+\end{definition}
+
+Задаёмся вопросами: как найти все собственные числа, и сколько их может быть? (Собственных векторов, понятно, может быть бесконечность, например у $id$).
+
+А вот собственных чисел не больше, чем $\dim V$.
+
+    $V$ --- конечномерное пространство. $\CA \in End(V)$.  $A$ --- его матрица,  $\lambda \in K$.
+
+    Тогда $\lambda$ --- собственное число  $\CA \iff \exists v \neq 0\!: \CA(v) = \lambda v \iff \CA(v) - \lambda v = \iff \CA(v) - \lambda id(v) = 0 \iff (\CA - \lambda \cdot id)(v) = 0 \iff \ker (\CA - A \cdot id) \neq 0 \iff \ker (A - \lambda E) \neq 0 \iff \det (A - \lambda E) = 0$.
+
+    Рассмотрим $\det(A - tE) = \det \begin{pmatrix} a_{11} - t & \ldots & a_{ij} \\ & \ddots & \\ a_{ij} &  & a_{nn} - t \end{pmatrix} \in K[t]$.
+
+\begin{theorem}
+    $\lambda$ --- собственное число  $\CA \iff \lambda$ --- корень многочлена  $\chi_A(t) = \det(A - tE)$.
+\end{theorem}
+\begin{definition}
+    $\chi_A(t)$ --- характеристический многочлен оператора $A$ (и матрицы).
+\end{definition}
+\begin{statement}
+    $\chi_A(t)$ не зависит от базиса $A$.
+\end{statement}
+\begin{proof}
+    $A, A'$ --- матрицы  $\CA$ в разных базисах.  $A' = C^{-1}AC \implies \chi_A(t) = \det(C^{-1}AC - tE) = \det(C^{-1}AC - C^{-1}tEC) = \det(C^{-1}(A-tE)\cdot C) = \det(C^{-1})\cdot \det(A - tE) \cdot \det(C) = \det(A - tE) = \chi_A(t)$.
+\end{proof}
+\begin{consequence}[из Th]
+    $\CA \in End(V)$,  $\dim V = n \implies \CA$ имеет  $\le n$ собственных чисел.
+\end{consequence}
+\begin{lemma}
+    Собственные вектора, соответствующие различным собственным числам, линейно независимы. 
+\end{lemma}
+\begin{proof}
+    $v_1, v_2, \ldots, v_k$ $\CA(v_i) = \lambda_i v_i$.  $\lambda_i \neq \lambda_j$ при  $i \neq j$. Хотим показать, что $v_1, \cdots, v_k$ --- линейно независимы. 
+
+    Индукция по $k$. База:  $k=0$ --- верно.
+
+    Переход от  $k$ к  $k+1$.
+
+     $v_1, \ldots, v_{k+1}$ --- собственные вектора $\lambda_1, \ldots, \lambda_{k+1}$ --- собственные числа. Предположим, что $v_1, \ldots, v_{k+1}$ --- линейно зависимы. То есть существует набор $a_i$: $\sum a_i v_i = 0$. Применим  $\CA \implies \sum a_i\lambda_i v_i = 0$, с другой стороны умножим комбинацию на  $\lambda_{k+1}$ и вычтем одно из другого.
+\\
+      Получим $\sum\limits_{i=1}^k a_i\underbrace{(\lambda_i - \lambda_{k+1})}_{\neq 0}v_i = 0 \implies a_1, \ldots, a_k = 0 \implies a_{k+1} = 0$, а значит всё же линейно независимы.
+\end{proof}
+\begin{consequence}
+    $\CA \in End(V)$,  $n = \dim V$. Пусть  $\chi_A(t) = (-1)^n \prod (t-a_i), a_i \neq a_j$. 
+
+    Тогда существует базис  $V$, состоящих из собственных векторов  $\CA$. 
+
+    В этом базиса матрица  $A$ --- диагональная.
+\end{consequence}
+\begin{proof}
+    По предыдущей теореме $\forall a_i \exists $ собственный  вектор  $v_i\!: \CA(v_i) = A_iv_i$. По лемме  $v_1, v_2, \ldots, v_n$ --- базис. 
+
+    $\CA(v_i) = 0 \cdot v_1 + 0 \cdot v_2 + \ldots + \lambda_i \cdot v_i + \ldots + 0 \cdot v_n \implies$ $i$-ый столбец выглядит как $\begin{pmatrix} 0 \\ \ldots \\ \lambda_i \\ \ldots \\ 0 \end{pmatrix} \implies$ получили диагональную матрицу с $A_{ii} = \lambda_i$.
+\end{proof}
+\begin{definition}
+    Такие операторы называются диагонализируемыми.
+\end{definition}
+\begin{statement}[Достаточное условие диагонализуемости]
+	Пусть $K$ --- алгебраически замкнутое поле (например $\mathbb{C}$), и $(\chi_A, \chi_A') = 1$ (взаимнопросты как многочлены). Тогда $\CA$ --- диагонализуем. 
+\end{statement}
+Как работать в общем случае? Идея: придумать $f \in K[x]\!: f(\CA) = 0$.
+
+\begin{definition}
+    $Tr(A) = \sum\limits_{i=1}^n a_{ii}$.  $A = (a_{ij})$.  $Tr(A) = \pm(\text{коэффициент при }t^{n-1}\text{ у }\chi_{A}(t)) \implies Tr(A)$ не зависит от выбора базиса.
+\end{definition}
+\begin{theorem}[Кэли-Гамильтона]
+    Пусть $\CA \in End(V)$. Тогда  $\chi_A(\CA)=0$. 
+    
+    То есть $\CA^n + a_{n-1}\CA^{n-1} + \ldots + a_1 \CA + a_0Id = 0$.
+    \begin{example}
+	    Матрица 2х2. $\chi_A(t) = t^2 - Tr(A) \cdot t + \det(A)$, т.е., подставляя $\CA$, т.е. $A$: $A^2 = Tr(A) \cdot A - \det A$.
+    \end{example}
+\end{theorem}
+\begin{proof}
+    Пусть у нас есть поле $K \leadsto \overline{K}$ --- алгебраическое замыкание.  То есть любой многочлен представим как произведение  $(x-a_i)$, где  $a_i$ --- корень многочлена.
+
+    Тогда $\xi_A(x) = \prod (x- a_i), a_i \in \overline{K}$. Тогда  $a_1, a_2,\ldots,a_n$ --- собственные числа.
+
+    Индукция по $n = \dim V$. При  $n=1$ это база: матрица  $\begin{pmatrix} a \end{pmatrix} = aE, x_0 = t - a \leadsto A-aE = 0$ --- верно.
+
+    Переход от  $n-1$ к $n$. $a_1$ --- собственное число  $\CA \implies \exists x\!: \CA x = a_1x$,  $\langle x \rangle$ --- инвариантное пространство. Тогда матрица в базисе $x_1 \equiv x, x_2, \ldots$. Получим матрицу вида $\left(\begin{array}{c|c} a_1 & * \\ \hline 0 & \widetilde{A} \end{array} \right)$. Тогда  $\widetilde{A}$ --- матрица  $A \Big|_{v / \langle x \rangle}$. 
+
+    Тогда  $\xi_\CA = (a_1 - t) \cdot \xi_{\widetilde{A}}(t)$. Значит  $\implies \xi_{\overline{A}}(t) = \prod\limits_{i=2}^n (t-a_i) \implies (\prod_{i=2}^n (t-a_i))(\widetilde{A}) = 0$.
+
+    А значит, $(\prod\limits_{i=2}^n (t-a_i))A(v) = kx$. А значит,  $(A - a_1Id)(kx) = k(\CA x - a_1x) = 0$.
+\end{proof}
+
+Возьмем характеристический многочлен матрицы $\xi(t) = \prod_{i=1}^k p_1^{a_1}(t)$,  $p_i$ --- неразложимые.
+
+Тогда пусть  $v_i = \{v \in V \mid p_i^{a_i}(\CA)(v) = 0\}$ --- аннуляторное пространство. Пусть  $p_i^{a_i} = t - a$. Тогда  $v_i = \{v \mid \CA(v) = a \cdot v\}$ --- собственное подпространство соответствующее $a$. 
+
+\begin{remark}
+    Это подпространство. (очев)
+\end{remark}
+
+\begin{theorem}
+    $V = V_1 \oplus V_2 \oplus \ldots \oplus V_k$.
+\end{theorem}
+\begin{proof}
+    $(*)$. Пусть $A \in End(U)$, тогда $\forall P\!: P(\CA) = 0 \land P = P_1 \cdot P_2, (P_1, P_2) = 1 \implies A = \ker(P_1(\CA)) \oplus \ker(P_2(\CA))$. $\xi(\CA) = 0$, $\xi(t_1) = p_1^{a_1} \cdot (p_2^{a_2} \cdot \ldots \cdot p_n^{a_n})$. 
+
+    Тогда $V = \underbrace{\ker p_1^{a_1}}_{V_1} \oplus \underbrace{\ker(p_2^{a_2} \cdot \ldots \cdot p_n^{a_n})}_{V_1'}$. 
+
+    Тогда $\CA\Big|_{V'_i} = \CA'$,  $V_i$ --- инвариантные пространства.  Осталось $p_2^{a_2} (p_3^{a_3} \cdot \ldots p_n^{a_n})$. Теперь раскладываем его, ну и поехали дальше.
+
+    Теперь докажем утверждение со звездочкой.
+
+    $(P_1, P_2) = 1 \implies \exists f, g \in K[x]\!: P_1 \cdot f + P_2 \cdot g = 1$. Тогда $P_1(\CA) f(\CA) + P_2(\CA)\cdot g(\CA) = id$. А значит для любого $u \in U\!:$  $(P_1(\CA)f(\CA))(u) + (P_1(\CA) \cdot g(\CA))(u) = u$. Обозначим первое слагаемое за $u_2$, а второе за $u_1$. Тогда $P_2(\CA) u_2 = P_2(\CA) \cdot P_1(\CA) f(\CA)u_2 = P(\CA)(f \CA(u_2)) = 0 \implies u_2 \in \ker P_2(\CA)$. 
+
+    Значит $u = u_1 + u_2$, лежащие в $\ker(P_1(\CA))$ и $\ker(P_2(\CA))$.
+
+    При этом $\ker(P_1(\CA)) \cap \ker(P_2(\CA)) = \{0\}$, т.к если $u_1=u_2=0$, то $u=0$.
+\end{proof}
+
+Перейдем теперь в $\CC$.  $p_i = (t-a_i)$.  $v_i = \ker(\CA - a_iE)^{b_i}$ --- корневые подпространства. $V = V_1 \oplus V_2 \oplus \ldots \oplus V_n$, $V_i$ --- инвариантные подпространства.  $p(\CA)(v) = 0$.  $V \to \CA v$.  $p(\CA) \cdot = (\CA \cdot p(\CA)v = \CA(P(A(V))) = 0)$. 
+
+Продолжим изучать операторы $\CA$: $(\CA - aId)^k = 0$. Пусть  $\mathcal{B} = \CA - aId \implies \mathcal{B}^b = 0$.
+
+$\mathcal{B} \leadsto B$ --- очень простая матрица в хорошем базисе. 
+
+\Subsection{Жорданов базис нильпотенотного оператора}
+\begin{definition}
+$\CA \in End(V)$ --- нильпотентный, если  $\exists k\!: \CA^k = 0$.    
+\end{definition}
+\begin{remark}
+    $\CA$ --- диагонализуемая нильпотентная  $\implies \CA = 0$.
+\end{remark}
+\begin{example}[Жордановка цепочка]
+    $V = \langle v_1, v_2, \ldots, v_n \rangle$. $\CA \in End(v)\!: \CA(v_i) = v_{i+1}, \CA(v_n) = 0$.
+
+    То есть  $v_1 \xRightarrow{\CA} v_1 \xRightarrow{\CA} \ldots \xRightarrow{\CA} v_n \xRightarrow{\CA} 0$. Например, $V = K[x]_n$,  $\CA(f) = f'$.
+\end{example}
+\begin{theorem}
+    У любого нильпонетного оператора есть базис из жордановых цепочек (непересекающийся)
+\end{theorem}
+\begin{remark}
+    Для любой жордановой цепочки $\CA$ в таком базисе будет как все нули + единицы на диагонали снизу от главной.
+
+    Для нильпотентного --- набор таких блоков.
+\end{remark}
+\begin{proof}
+    Любой нельпотентный оператор можно представить как какую-то диаграмму Юнга. 
+
+    Пусть $\mathcal{B}$ --- нильпотентна,  $k$ --- минимальное, такое что  $B^k = 0$. 
+
+    Пусть  $S_0 = \ker B$. Построим  $S_0 \supset S_1 \supset S_2 \supset \ldots \supset S_{k-1}$, $S_i = (\ker B) \cap (\Im B^i)$. $S_k = (\ker B) \cap \Im B^k = 0$.
+    
+    Если мы доказали существование, то покажем, что  $\sum \dim (s_i) = \dim V$.
+
+    Причем скажем, что $s_i = \ker(B \Big|_{\Im B^i}) \implies \dim s_i = \dim (\Im B^i) - \dim(\Im(B\Big|_{\Im B^i})) = \dim (\Im (B^i)) - \dim(\Im(B^{i+1}))$. Cложим  $\dim s_i$. Получим  $\dim \Im B^0 - \dim \Im B^k = \dim V$. 
+
+    [Здесь далее $v_{i, j}^k$ обозначает элемент, находящий в $i$-ой жордановой цепочке длины  $k$, причем он  $j$-я степень прообраза]. Выведем базис $s_{k-1}\!: v_{1,1}^{k-1}, v_{2, 1}^{k-1}, \ldots, v_{s_{k-1}}^{k-1} \in \Im(B^{k-1}) \implies \exists v_{1, k-1}^{k-1}, v_{2, k - 1}^{k-1}\!: B^{k-1} (v_{i, k - 1}^{k-1}) = v_{i, 1}^{k-1}$.
+
+    Тогда $v_{i,j}^{k-1} = B^{k-1-j}(V_{i, k-1}^{k-1})$ --- построили  $a_{k-1}$ жордановых цепочек длины  $k-1$. 
+
+    Дополним до базиса $s_{k-2}\!: v_{1,1}^{k-2}, \ldots, v_{a_{k-2}, 1}^{k-2} \in S_{k-2}$ и аналогично.
+
+    Построили $\{v_{i, j}^{k-2}\}_{\substack{i=1..k-2\\j=1..k-2}}$. 
+
+    Сколько мы построили векторов? $(\dim s_{k-1}) k + (\dim s_{k-2} - \dim s_{k-1})(k-1) + \ldots + \dim s_0 - \dim s_1 = \dim s_{k-1} + \dim s_{k-2} + \ldots \overset{(*)}{=} \dim V$. $(*)$ --- по лемме.
+
+    Осталось доказать: $\{v_{i, j}^k\}$ --- ЛНЗ  $\implies \{v_{i, j}^k\}$ --- базис.
+
+    Пусть  $\sum_{\substack{l=0..k-1\\j=1..l+1\\i=1..a_l}} a_{i, j}^l v_{i, j}^l = 0$. Пусть  $L = \max\{j \mid \exists i, l\!: a_{ij}^l \neq 0\}$. Применим  $B^{l-1}$:  $\sum a_{i, L}^l v_{i, 1}^l = 0$, а это базис ядра  $\mathcal{B} \implies a_{i, L}^l = 0$. Противоречие. 
+\end{proof}
+
+Хотим теперь возвести матрицу в степень, то есть $A \leadsto A^N$. Давайте посмотрим на  $f(n) = \max(a_{ij}^n)$. Для довольно случайно матрицы эта функция будет расти довольно экспоненциально $f(n) \sim a^n$. Но $a$ тоже имеет значение.
+
+Будем считать, что  $A \in M_{n}(\CC)$. Тогда  $\exists C\!: C^{-1}AC = I$ --- блочная жорданова матричка. Тогда заметим, что  $A^n = (CIC^{-1})(CIC^{-1})\ldots = CI^nC^{-1}$. Теперь научимся считать возводить в степень жорданову матрицу.
+
+Для этого заметим, что нам достаточно умножать только жордановы блоки. $(J_\alpha(\lambda))^n = (\lambda E_{\alpha} + J_\alpha(0))^n = \sum\limits_{k=0}^n \binom{n}{k} \lambda^{n-k}J_\alpha(0)^k$. Тогда если посмотреть на блок, то заметим, что блок из единиц двигается. Ну тогда все понятно.\\
+Для тех, кому не понятно:\\
+Матрица $J_\alpha(0)^n$ будет на $(k+1)$-й диагонали иметь единицы, всё остальное нули.\\
+А у матрицы $J_\alpha(\lambda)^n$ на главной диагонали $\lambda^n$, на следующей $\binom{n}{1} \lambda^{n-1}$ и так далее.\\
+
+Тогда заметим, что $f(n) \sim \mathcal{O}^*(\lambda^n)$ для блока, а для всей матрицы надо взять максимум  по  $\lambda$.
+
+Когда  $\{A^n\}$ ограничена ограничена? Когда  $|\lambda| \le 1$ и все блоки с $\lambda = 1$ размера 1.
+
+Когда  $A^n \to 0$? Когда  $|\lambda| < 1$.
+
+\Subsection{Когда мы не в $\CC$}
+Рассмотрим несколько случаев:
+\begin{enumerate}
+    \item $K = \R$. Перейдем в  $\CC$. Пусть  $v_1, v_2. \ldots, v_n$ --- базис из собственных векторов, $\lambda_1, \ldots, \lambda_n$ --- собственные числа.
+
+        $x \mapsto Ax$.  $v_i \in \CC^n$.  Наблюденме: $Av_i = \lambda_i v_i$,  $\lambda_i \notin \R$. Сопряжение:  $A \cdot \overline{v_i} = \overline{\lambda_i} \cdot \overline{v_i}$. 
+
+        Тогда заметим, что $v_i, \overline{v_i} \to \left(v_i + \overline{v_i}, \frac{v_i - \overline{v_i}}{2}\right)$, где числа из пары $\in \R$. 
+
+        Тогда заметим, что $A(v_i + \overline{v_i}) = Av_i + A\overline{v_i} = \lambda v_i + \overline{\lambda} \overline{v_i}$, тоже самое для  $\frac{v_i - \overline{v_i}}{2}$, $\langle v_i + \overline{v_i}, v_i - \overline{v_i} \rangle $ --- инвариантное подпространство.  
+
+        Тогда $A \in M_n(K)$ диагонализуема как матрица над $\CC \implies \exists$ базис в  $\R^n$ в котором матрица состоит из блоков вида $\begin{pmatrix} a_i & b_i \\ -b_i & a_i\end{pmatrix}$. 
+
+        А если матрица не диагонализуема, то матрица будет состоять из таких блоков $B_i$ (аналогично Жордановым):\\ $\begin{pmatrix} a_i & b_i & 0 & 0 \\ -b_i & a_i & 1 & 0 \\ 0 & 0 & a_{i} & b_{i} \\ 0 & 0 & -b_{i} & a_{i} \end{pmatrix}$
+\end{enumerate}
+\Subsection{Циклические пространства и фробениусова форма}
+$\CA\!: V \to V$, поле по  $K$.
+
+Выберем  $v \in V, v \neq 0$
+
+Рассмотрим последовательность $\langle v, \CA v, \CA^2 v,\ldots, \CA^k v \rangle$ --- не ЛНЗ. Найдем такое минимальное $k$. Значит $\exists \{a_i\}, A^k(v) = A^k(v) = \sum\limits_{i=1}^k a_i A^i(V) \land \{v, v, \CA v, \CA^2 v,\ldots, \CA^k v\}$ --- не ЛНЗ.
+
+\begin{statement}
+    $\langle v \rangle_{K[t]} = \langle v, \CA v, \ldots, \CA^{k-1} \rangle$. Найдем $\min k$, такое, $\exists \{a_i\} \! \in K$, такие, что  $A\Big|_{\langle v\rangle_{K[t]}} = \begin{pmatrix} 0 & 0 & \ldots & 0 & -a_0 \\ 1 & 0 & \ldots & 0 & -a_1 \\ \vdots & \vdots & \ddots & \vdots & \vdots\\ 0 & 0 & \ldots & 1 & -a_{k-1} \end{pmatrix}$ --- тут под главной диагональю единицы, а так же в последнем столбце не нули. Это называется фробениусова. Легко убедиться, что $\langle v \rangle_{K[t]}$ --- инвариантное: 
+    $\langle v\rangle_{K[t]}$ --- циклическое подпространство. 
+
+    $\CA(b_0 + b_1 \CA v + \ldots + b_{k-1}\CA^{k-1}v) = b_0\CA v + \ldots + b_{k-2}\CA^{k-1}(v) + b_k{k-1}\CA^k(v)$, а $\CA^{k}(v)$ --- линейно зависимая.  
+\end{statement}
+\begin{statement}
+    $\chi_{\CA \Big|_{\langle v \rangle}} = t^k - a_{k-1}t^{k-1} .. - a_0$.
+\end{statement}
+\begin{proof}
+    Легкое упражнение на аннуляторы и определитель.
+\end{proof}
+\begin{statement}
+    $\forall$ пространство раскладывается в прямую сумму циклических подпространств (относительно $\CA$).\\ На матричном языке — любая матрица подобна матрице, состоящей из нескольких блоков, как выше (фробениусова форма).
+\end{statement}

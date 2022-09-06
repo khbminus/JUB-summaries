@@ -1,0 +1,34 @@
+\selectlanguage *[spelling=modern]{russian}
+\contentsline {section}{1. Векторные пространства}{1}{section*.2}%
+\contentsline {section}{2. Матрицы}{8}{section*.3}%
+\contentsline {subsection}{\numberline {2.1}Структура линейных отображений}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Матрица линейного отображения}{13}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Матрица перехода и формулы пересчета}{13}{subsection.2.3}%
+\contentsline {section}{3. Явные формулы в линейной алгебре (Теория определителей)}{20}{section*.4}%
+\contentsline {section}{4. Локализация и поле дробно-рациональных функций}{27}{section*.5}%
+\contentsline {section}{5. Теория групп}{30}{section*.6}%
+\contentsline {subsection}{\numberline {5.1}Смежные классы и теорема Лагранжа}{30}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Группа перестановок}{31}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Факторгруппа}{32}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Теорема о гомоморфизме}{33}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Действие групп}{34}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Орбиты и стабилизаторы}{35}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Лемма Бернсайда}{36}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Применения теории конечных групп действий}{36}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Центр и коммутант}{40}{subsection.5.9}%
+\contentsline {section}{6. Пространства с операторами}{45}{section*.7}%
+\contentsline {subsection}{\numberline {6.1}Жорданов базис нильпотенотного оператора}{49}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Когда мы не в $\ensuremath {\mathbb {C}}\xspace $}{50}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Циклические пространства и фробениусова форма}{50}{subsection.6.3}%
+\contentsline {section}{7. Евклидовы и унарные пространства}{52}{section*.8}%
+\contentsline {subsection}{\numberline {7.1}Ортогональное дополнение}{53}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Соответствиемежду формами/матрицами}{54}{subsection.7.2}%
+\contentsline {section}{8. Операторы в евклидовых и унитарных пространствах}{56}{section*.9}%
+\contentsline {subsection}{\numberline {8.1}Самосопряженные операторы}{56}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Оценка квадратичной формы}{56}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Ортогональные и унитарные операторы}{57}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Положительные операторы}{58}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Полярное разложение}{59}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}SVD разложение}{60}{subsection.8.6}%
+\contentsline {section}{9. Аффинная и проективная геометрия}{61}{section*.10}%
+\contentsline {subsection}{\numberline {9.1}Аффинное пространство}{61}{subsection.9.1}%
