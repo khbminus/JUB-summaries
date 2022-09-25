@@ -1,0 +1,149 @@
+%!Tex Root=**/conspect.tex
+%!TeX program = xelatex
+Напомним определения с прошлого раза:
+\begin{definition}
+    Назовем $U \subset \R^n$ хорошим, если
+     \begin{itemize}
+        \item $U$ --- ограниченное,
+        \item  $a_k, b_k$ --- непрерывны на  $U^{(k - 1)}\, \forall k$.
+        \item  $\forall k \in 1:n\!: z \in U^{(k)} \left\{ z \right\} \times \left( a_{k+1}(z), b_{k+1}(z) \right) \subset U^{(k+1)}$.
+    \end{itemize}
+\end{definition}
+Данное определение придуманное, потому что мы не углубляемся в теорию, потому что нам нужно заспидранить интегралы для теорвера, а для того, чтобы понять подробно, нужно в 4 модуле пойти на курс JUB.
+
+Для понимания можно попробовать почитать учебник Руденко.
+
+\begin{remark}
+    Мы не требуем, чтобы $U$ было замкнутым или открытым.
+\end{remark}
+\begin{remark}
+    Определение хорошести зависит от нумерации.
+
+    Пример: повернутый на $90^{\circ}$ логотим Котлина.
+\end{remark}
+\begin{definition}
+    Пусть $f\!: U \to \R$ --- ограниченена, непрерывно, $U$ --- хорошее.
+
+    Тогда:  $\int_U f(x) \dx \coloneqq \int_{a_1}^{b_1} \left( \int\limits_{a^2}^{b_2} \ldots \left( \int\limits_{a_n}^{b_n} f(x)\,\dd{x_n}  \right) \ldots \right) \dd{x_1}$
+\end{definition}
+\begin{exerc}
+    Абоба.
+\end{exerc}
+\begin{definition}
+    $\supp f = \vphi \left\{ x: f(x) \neq 0 \right\}$.
+
+    $C_0(\R^n) = \left\{ f : \R^n \to \R \begin{array}{l} f\text{ --- непрерывна} \\ \supp f\text{ --- какое-то множество я хз}\end{array} \right\} $. Тогда $f \in C_0(\R^n) \implies \int_{\R^n} f(x)\dx = \int_I f(x)\dx$, где $I \supset \supp f$,  $I$ --- ячейка.
+\end{definition}
+\begin{theorem}
+    Пусть $U \subset \R^n$ --- хорошее относительно двух нумераций координат.
+
+    Тогда  $\int_U f(x) \dx$ одинаковый в обоих нумерациях.
+\end{theorem}
+\begin{remark}
+    $f \in C_0(\R^n), \supp f \subset U \implies \int_U f(x) \dx = \int_{\R^n} f(x) \dx$.
+\end{remark}
+\begin{proof}[Идея доказательства теоремы]
+    Найти последовательность $f_1, f_2, \ldots \in C_0(\R^n)$, $\supp f_i \subset U$ и $\int_U f_i(x) \dx \to \int_U f(x)\dx$ в первой нумерации и  $\int_U f_i(x) \dx \to \int_U f(x) \dx$ во второй нумерации.
+\end{proof}
+\begin{proof}
+    Пусть $\eps > 0$ фиксировано,  $U_{\eps} \coloneqq \left\{ x \in U \mid \forall k \in 1:n, a_k(x) + \eps \le x_k \le b_k(x) - \eps \right\}. $ 
+    \begin{statement}
+        $\forall \eps > 0\!: U_{\eps}$ --- замкнуто, $U_{\eps} \subset \Int U$.
+    \end{statement}
+    \begin{proof}
+        $\exists \delta = \delta(\eps) > 0\!: U_{\eps} + \overline{B}(0, \delta(\eps)) = \bigcup\limits_{x \in U_{\eps}} \overline{B}(x, \delta(\eps)) \subset U$.
+
+        Заметим, что для $n = 1$ можно взять $\delta(\eps) = \frac{\eps}{2}$.
+        
+        Для больших $n$ воспользуемся индукционным переходом. Утверждение выполнено для  $U^{(n-1)}_{\eps}\!: \exists \delta_{n-1}(\eps) > 0\ \bigcup\limits_{z \in U_{\eps}^{(n-1)}} \overline{B}_{n-1}(z, \delta_{n-1}(\eps)) \subset U^{(n-1)}$.
+
+        Тогда $\exists \delta_0 \in (0, \frac{1}{2}\delta_{n-1}(\eps))\!: \forall z, w \in U_{\eps}^{(n-1)} + \overline{B}_{n-1}(0, \frac{1}{2}\delta_{n-1}(\eps)), |z-w| \le \delta_0 \implies |a_n(z) - a_n(w)| \le \frac{\eps}{2}$ и $|b_n(z) - b_n(w)| \le \frac{\eps}{2}$.
+
+        Тогда пусть $\delta = \delta(\eps) \coloneqq \min(\frac{\eps}{2}, \delta_0)$, $x \in U_{\eps}, x \in \R^n\!: |x-y| \le \delta(\eps)$. Надо понять, что $y \in U$.
+
+        Заметим, что $x = (z, x_n), y = (w, y_n); z, w \in \R^{n-1}$. Тогда выполняется два свойства:
+         \begin{enumerate}
+             \item $|z-w| \le \delta_0 \implies w \in U_{\eps}^{(n-1)} + \overline{B}_{n-1}(0, \frac{\delta_{n-1}(\eps)}{2}$,
+             \item $y_n \le  x_n + \frac{\eps}{2} \le  b_n(z) - \eps + \frac{\eps}{2} = b_n(z) - \frac{\eps}{2} <b_n(w)$. И $y_n \ge  x_n - \frac{\eps}{2} \ge  a_n(z) + \eps - \frac{\eps}{2} = a_n(z) + \frac{\eps}{2} > a_n(w) \implies y \in (a_n(w), b_n(w)) \implies y \in U$, потому что это определение хорошего множества.
+        \end{enumerate}
+        $U_\eps$ замкнуто, так как задается нестрогими неравенствами для непрерывных функций, заданных на замкнутом множестве  $\vphi U_{\eps}$ ( $\vphi U_{\eps} \subset U$, так как $\vphi U_{\eps} \subset \bigcup\limits_{x \in U_{\eps}} \overline{B}_n(x, \delta(\eps))$).
+    \end{proof}
+    \begin{statement}
+        $f\!: U \to \R$ --- непрерывна, ограничена, $U$ --- хорошее.  $\exists C > 0$ зависящая только от $U$ (но не от  $f$), такое что 
+        \[
+            \forall \eps > 0\!: \left| \int_U f(x)\dx - \int_{U_{\eps}} f(x)\dx \right| \le  \sup\limits_{U}  |f| \cdot C \eps
+        .\] 
+    \end{statement}
+    \begin{proof}
+        Упражнение. При $n=1$ что-то.
+    \end{proof}
+    \begin{consequence}
+        $U$ --- хорошее,  $f_1, \ldots, f_n, f\!: U \to \R$ непрерывно, $\forall i\!: \sup\limits_U |f_i| \le  M, \sup\limits_U |f| \le  M, \forall K \subset U$ --- компакт(?).
+
+        Тогда $\int_U f_i(x)\dx \xrightarrow{\eps \to  +\infty} \int_U f(x) \dx$.
+    \end{consequence}
+    \begin{proof}
+        Зафиксируем $\eps > 0$,  $U_\eps$ --- компакт. $\implies \exists N > 0\!: \forall i \ge  N\ \sup\limits_{U_\eps} |f_i - f| \le \eps$.
+
+        \[
+            \text{не успель}
+        .\] 
+    \end{proof}
+    \begin{lemma}[Главная техническая лемма]
+        $U$ --- хорошее,  $f\!: U \to \R$ --- ограничена, непрерывна.  
+
+        Тогда $\exists f_1, \ldots\!: U \to \R$:
+        \begin{enumerate}
+            \item $\sup\limits_U |f_i| \le  \sup\limits_U |f|$,
+            \item $\forall K \subset U$ --- компакт  $\lim_{i \to \infty} \sup\limits_K |f_i - f| = 0$,
+            \item $f_i \in C_0(\R^n), \supp f_i \subset U$.
+        \end{enumerate}
+    \end{lemma}
+    \begin{proof}
+        $\eps > 0$, определим  $\rho_k^{\eps}\!: U \to \R$, где $1 \in 1:n$,  \[\rho_k^{\eps}(x) = \begin{cases}
+            0, & x_k \ge  b_k - \frac{\eps}{2} \land x_k \le  a_k + \frac{\eps}{2} \\
+            1, & x_k \in \left[ a_k + \eps, b_k - \eps \right] \\
+            \frac{2}{\eps}\min(x_k - a_k - \frac{\eps}{2}, b_k - x_k-\frac{\eps}{2}) & \text{else}
+        \end{cases}\]
+        
+        Простые свойства: $\rho^{\eps}(x) = \prod\limits_{k=1}^n \rho_k^{\eps}(x), 0 \le  \rho^{\eps}(x) \le 1$. 
+
+        Положим $f_i(x) \coloneqq f(x) \cdot \rho^{\frac{\eps}{i}}(x)$. Проверить, что такие $f_i$ подходят.
+    \end{proof}
+
+    Вернемся к теореме. Возьмем $f_1, f_2, \ldots$ из леммы. $\int_U f(x) \dx$ одинаков в любой нумерации, так как  $f_i \in C_0(\R^n), \int_U f_i(x)\dx = \int_{\R^n} f_i(x)\dx$. Тогда по следствию выше  $\int_U f_i(x)\dx \xrightarrow{\eps \to +\infty} \int_U f(x)\dx$.
+\end{proof}
+\Subsection{Формула замены переменной под интегралом}
+\begin{definition}
+    $U \subset \R^n$ составное, если $U = \bigcup\limits_{i=1}^k U_i$,  $U_i$ --- хорошее, че-то еще.
+\end{definition}
+
+Тут было что-то еще.
+\begin{remark}
+    $\Phi\!: U \subset \R^n \to \R^n$.  $\Phi$. У меня появился кофе!!!
+\end{remark}
+АБОБА
+\begin{theorem}
+    $U \subset \R^n$ --- составное множество.  $\Phi\!: U \to \R^n$ такая, что
+     \begin{enumerate}
+        \item $\Phi(U)$ --- составное,
+        \item  $\Phi\!: \Int U \to \Int \Phi(U)$ гомеоморфизм,
+        \item  $\Phi$ дифференцируема на  $\Int U$. И якобиан не равен нулю в любой точке.
+        \item Якобиан  $\Phi$ ограничен на  $\Int U$.
+    \end{enumerate}
+
+    Тогда $\forall f\!:\Phi(U) \to \R$ ограниченной выполняется:
+     \[
+         \int_{Phi(U)} f(x) \dx = \int_U f(\Phi(U)) |\text{Jac}\ \Phi(x)| \dx.
+    .\] 
+\end{theorem}
+\begin{example}
+    $n = 1$. Формула замены переменной.
+\end{example}
+\begin{example}
+    $\Phi\!: [0; 2\pi) \times \R_{\ge 0} \to \R^2$. $Phi(\vphi, \vphi) = (r  \cos \vphi, r  \sin \vphi)$
+    Якобиан $= \det \begin{pmatrix} -r  \sin \vphi & r  \cos \vphi \\ \cos \vphi & \sin \vphi \end{pmatrix} = r$.
+
+    $U = \left\{ (x, y) \mid x^2 + y^2 \le  1 \right\}$. $Area(U) = \int_U 1\dx\dy = \int_{[0, 2\pi) \times [0, 1]} r \dd{r} \dd{\vphi} = \pi$
+\end{example}
+
