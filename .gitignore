@@ -290,3 +290,5 @@ TSWLatexianTemp*
 
 # Custom:
 tmp/
+/.idea/*
+/.idea/
