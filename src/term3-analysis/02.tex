@@ -1,0 +1,241 @@
+%!Tex Root=**/conspect.tex
+%!TeX program = xelatex
+\Subsection{Напоминание}
+Говорим про комплексные числа: $\CC \approx \R^2$: $(x, y) \in \R^2 \leadsto z = x + iy. i \in \CC, i^2 = -1, i \leadsto (0, 1), z = x+iy, w = a+ib, z \cdot w = xa - yb + i(xb+ya)$.
+\begin{properties}
+    \begin{enumerate}
+        \item $|z| = \sqrt{x^2+y^2}, \overline{z} \coloneqq x - iy, z \cdot \overline{z} = |z|^2$.
+        \item $\Re z = x$ --- вещественная часть,
+        \item  $\Im z = y$ --- мнимая часть,
+        \item $\Re z = \frac{1}{2} \left( z + \overline{z} \right), \Im z = \frac{1}{2i}\left( z - \overline{z} \right)$.
+    \end{enumerate}
+\end{properties}
+\begin{definition}
+    Полярная запись комлексного числа $z = r \left( \cos \vphi + i \sin \vphi \right) = e \cdot e^{i\vphi}$. Умножение: $r_1r_2\left( \cos (\vphi + \psi) + i\sin(\vphi + \psi) \right)$
+\end{definition}
+\Subsection{Аналитические функции}
+\begin{definition}
+    Степенной ряд --- это ряд вида $\sum\limits_{n \ge  0} a_nz^n, a_n \in \CC$.
+    
+    Радиус сходимости $\sum\limits_{n \ge 0} a_nz^n$ --- это $R \in \left[ 0, +\infty \right]\!: R^{-1} = \limsup\limits_{n \to \infty} |a_n|^{\frac{1}{n}}$.
+
+    $R = \sup \left\{ r\!: |a_n r^n| \right\}$.
+\end{definition}
+\begin{statement}
+    \slashn
+    \begin{enumerate}
+        \item $\sum\limits_{n \ge 0} a_n z^n$ --- сходится абсолютно при $|z| < R$ и расходится при  $|z| > R$.
+        \item  $r < R$,  $\sup\limits_{|z|\le  r} \left| \sum\limits_{n \ge  0} z_n z^n \right| < \infty$.
+    \end{enumerate}
+\end{statement}
+\begin{proof}
+    Смотри конспект прошлого года.
+\end{proof}
+\begin{statement}
+    \slashn
+     \begin{enumerate}
+         \item Пусть $R$ --- радиус сходимости  $\sum\limits_{n \ge  0} a_nz^n$, тогда $R$ --- радиус сходимости и для ряда  $\sum\limits_{n \ge 1} n a_n z^{n-1}$.
+         \item $\sum\limits_{n \ge 0} a_n z^n \cdot \sum\limits_{m \ge  0} b_n z^n = \sum\limits_{k \ge 0} \sum\limits_{n + m = k} a_nb_m \cdot z^k$. Верно $\forall z\!: |z| < R$.
+    \end{enumerate}
+\end{statement}
+\begin{example}
+    $\exp(z) = \sum\limits_{n \ge  0} \frac{z^n}{n!}, R = +\infty.$
+\end{example}
+\begin{example}
+    $\frac{1}{1-z} = \sum\limits_{n \ge  0} z^n, R = 1$.
+\end{example}
+\begin{definition}
+    $\Omega \subset \CC$ --- открытое,  $f\!: \Omega \to \CC$ аналитична, если  $\forall z_0 \in \Omega \exists r > 0\!: \forall z, |z-z_0| < r \implies f(z) = \sum\limits_{n \ge 0} a_n(z-z_0)^n$.
+\end{definition}
+\begin{statement}
+    $f, g$ --- аналитические функции на  $\Omega$, то  $f + g$ --- аналитическая.
+\end{statement}
+\begin{proof}
+    Очевидно.
+\end{proof}
+\begin{example}
+    \begin{enumerate}
+        \item $f \in \CC[z] \implies f$ --- аналитическая на  $\Omega = \CC$.
+        \item Рациональные функции аналитичны там, где они определены.
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    $\mathcal{A}(\Omega) = \left\{ f\!: \Omega \to \CC \mid f\text{ --- аналитическая} \right\} $, тогда $\mathcal{A}$ --- кольцо.
+\end{remark}
+\Subsection{Голоморфные функции}
+\begin{definition}
+    $\Omega \in \CC$ --- область, если  $\Omega$ --- открытое, непустое, связное.
+\end{definition}
+\begin{definition}
+    $f\!: \Omega \in \CC$, тогда  $f$ имеет  в  $z_0 \in \Omega \iff \exists \lim\limits_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h} \eqqcolon f'(z_0) \iff \exists \alpha \in \CC\!: f(z_0 + h) = f(z_0) + \alpha \cdot h + o(|h|), h \to 0$.
+\end{definition}
+\begin{definition}
+    $f\!: \Omega \to \CC$ --- голоморфная, если  $\exists f'(z)\ \forall z \in \Omega$.
+\end{definition}
+\begin{properties}
+    \begin{enumerate}
+        \item $f, g$ --- голомофрные функции на  $\Omega$, то  $f+g, f \cdot g$ --- голомофрные, $\frac{f}{g}$ --- голомофорна там, где $g \neq 0$.
+    \end{enumerate}
+\end{properties}
+\begin{proof}
+    $f(z+h) \cdot g(z+h) = \left( f(z) + f'(z)h + o(|h|) \right) \left( g(z) + g'(z) h + o(|h|) \right)$ аааааааааааааааааааааааааааааа
+\end{proof}
+\begin{example}
+    \begin{enumerate}
+        \item $f \in \CC[z] \implies f$ --- голоморфна. Достаточно проверить для  $f = 1, f = z$.  $f = 1 \implies f' = 0$,  $f = z \implies f' = 1$.
+        \item  $f(z) = \overline{z}$, тогда $f$ --- не голоморфна. Посмотрим в нуле: $f'(0) = \lim\limits_{h \to 0} \frac{f(h) - f(0)}{h} = \frac{\overline{h}}{h}$. $h = \eps \in \R$. Тогда предел  $1$, при  $h = i\eps$ получаем предел  $-1$.
+        \item $f(z) = \sum\limits_{n \ge 0} a_n z^n$, $R$ --- радиус сходимости,  $R > 0$, тогда  $f$ голоморфна в  $\Omega = D_R = \left\{ z\!: |z| < R \right\} $, причем $f'(z) = \sum\limits_{n \ge  1}na_nz^{n-1}$.
+            \begin{proof}
+               1. TODO.
+
+               $\left| \frac{(z+h)^n - z^n}{n} - n z^{n-1} \right| \le  n(n-1)(|z| + |h|)^{n-2} \cdot |h|, n \ge 2$.
+
+               $\left| \frac{(z+h)^n - z^n}{h} - n \cdot z^{n-1} \right| = \left| (z+h)^{n-1} + \ldots + z^{n-1} - n z^{n - 1} \right| = \left| (z+h)^{n-1} - z^{n-1} + (z+h)^{n-2}z - z^{n-1} + \ldots + z^{n-1} - z^{n-1} \right| \le  \sum\limits_{k = 0}^{n-1} |z|^k \cdot |(z+h)^{n-1-k}-z^{n-1-k}| \le  n(n-1)(|z|+|h|)^{n-2}|h|$.
+
+               Покажем, что $f'(z) = \sum\limits_{n \ge  1}na_n z^{n-1}$:
+               \begin{align*}
+                   \left| \frac{f(z+h) - f(z)}{h} - \sum\limits_{n \ge  1}n a_n \cdot a^{n-1} \right| &= \left| \sum\limits_{n\ge 2} a_n\left( \frac{(z+h)^n - z^n}{h} - nz^{n-1} \right)  \right| \le \\ &\le \left( \sum\limits_{n \ge  2} |a_n| n(n-1)(|z| + |h|)^{n-2}\right) |h| \xrightarrow{h \to 0} 0
+               .\end{align*}
+            \end{proof}
+    \end{enumerate}
+\end{example}
+\begin{consequence}
+    Аналитические функции --- голоморфны. Обратное утверждение тоже верно.
+\end{consequence}
+\Subsection{Уравнение Коши-Римана}
+Рассмотрим $f(z) = u(z) + i \cdot v(z), u, v \in \R, u = \Re f, v = \Im f$. Можно посмотреть на  $f$ как на  $f\!: \Omega \to \R^2$,  $(x, y) \mapsto \left(u(x, y), v(x, y)\right)$
+ \begin{statement}
+     $f\!: \Omega \to \CC$ --- голоморфная, тогда  $f$ дифференцируема как функция из  $\R^2$ в  $\R^2$, и матрица Якоби  $f$ имеет вид  $\begin{pmatrix} u_x & u_y \\ v_x & v_y \end{pmatrix} $
+\end{statement}
+\begin{proof}
+    $z = x+iy, h = h_1+ih_2$.
+    $f(z+h) = f(x+h, i(y+h_2)) = f(z) + f'(z) \cdot (h_1 + ih_2) + o(|h|)$, $h+ih_2 \mapsto f'(z) \cdot (h_1 + ih_2)$ --- линейное отображение $\R^2 \to \R^2$.
+\end{proof}
+
+$f\!: \Omega \in \CC$ --- голоморфная,  $z \in \Omega, \eps \in \R$.  $f'(z) = \lim\limits_{\eps \to 0} \frac{f(z+\eps) - f(z)}{\eps} = \lim\limits_{\eps \to 0} \frac{f(z+i\eps) -f(z)}{iz}$. Тогда, если $z = x+iy, \lim\limits_{\eps \to 0} \frac{f(x+\eps + iy) - f(x+iy)}{\eps} = \frac{\partial f}{\partial x}(z)$. По $y$ получается предел  $-i \frac{\partial f}{\partial y}(z)$. 
+
+То есть $\frac{\partial f}{\partial x}(z) = -i \frac{\partial f}{\partial y}(z) \iff \begin{cases}
+    \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \\ 
+    \dots
+\end{cases}$
+
+\begin{definition}
+$\frac{\partial f}{\partial x} = \frac{1}{\eps}\left( \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} \right)$. Что-то. 
+\end{definition}
+\begin{lemma}
+    $f\!: \Omega \to \CC, \Omega$ --- область.
+     $f$ голоморфна  $\iff f$ дифференцируема и $\frac{\partial f}{\partial \overline{z}} = 0$.
+\end{lemma}
+\begin{proof}
+    \begin{itemize}
+        \item $\implies$ проверили выше.
+        \item $\Leftarrow$ $z = x + iy, h = h_1 + ih_2, f = u + iv$.
+            \begin{align*}
+                f(z+h) = f(x + h_1 + i(y+h_2)) = f(x+iy) + \frac{\partial f}{\partial x}(z) h_1 + \frac{\partial f}{\partial y}(z) \cdot  h_2 + o(|h|) = f(z) + (u_x + iv_x)h_1 + (u_u + iu_y)h_2 + o(|h|) = f(z) + (u_x + iv_x)h_1 + (-v_x + i u_x)h_2 + o(|h|) = f(z) + (u_x + iv_x) (h_1 + ih_2) + o(|h|) = f(z) + (u_x i v_x) h + o(|h|)
+            .\end{align*}
+    \end{itemize}
+\end{proof}
+\Subsection{Первообразная голоморфной функции}
+\begin{definition}
+   $\Omega$ --- область,  $f\!: \Omega \to \CC$, тогда $F\!: \Omega \to \CC$ --- первообразная  $f$, если  $F'(z) = f(z)\ \forall z \in \Omega$.
+
+   В частности, $F$ --- голоморфна.
+\end{definition}
+\subsubsection{Интеграл вдоль пути}
+\begin{definition}
+    Путь --- непрерывное отображение $z\!: \left[ a, b \right] \to \CC$.
+\end{definition}
+\begin{definition}
+    Путь гладкий, если $\forall t \in \left( a, b \right) \exists z'(t)$ непрерывно ограничена
+
+    Кусочно гладкий, если $\exists t_1, \ldots, t_n \in \left( a,b \right)\!: z'(t)$, если $t \neq t_i$.
+\end{definition}
+
+\begin{definition}
+    Пути $z_1: [a, b] \to \CC, z_2: [c,d] \to C$ эквиваленты, если они отличаются заменой параметризации, то есть $\exists \vphi\!:[a, b] \to [c,d]$ биекция.
+\end{definition}
+\begin{definition}
+    Контур --- класс эквивалентности путей.
+\end{definition}
+\begin{definition}
+    Пусть $\gamma$ --- контур, заданный путем  $z\!: [a, b] \to \CC$, тогда контур  $C$ обратной ориентации --- это контур, заданный путем  $\widetilde{z}\!: [-b, -a] \to CC, \widetilde{z}(t) = z(-t)$.
+\end{definition}
+\begin{definition}
+    Длина пути, это $\int\limits_a^b \sqrt{x'(t)^2 + y'(t)^2 \dd{t}}$
+\end{definition}
+\begin{definition}
+    $f\!: \Omega \to \CC$ --- непрерывна, тогда интеграл вдоль пути  $\gamma$, заданный $z\!: [a, b] \to \CC$, это  $\int\limits_{\gamma} f(z)\dd{z} = \int\limits_a^b f(z(t))z'(t)\dd{t}$.
+\end{definition}
+\begin{statement}
+    $\int\limits_{\gamma} f(z) \dd{z}$ не зависит от выбора пути  $\gamma$.
+\end{statement}
+\begin{proof}
+    $\vphi\!: [c,d] \to [a, b], z_1\!: [c,d] \to \CC, z_1(t) = z(\vphi(t)), z_1'(t) = z'(\vphi(t))\vphi'(t)$.
+
+    $\int\limits_c^d f(z_1(t))z_1'(t) \dd{t} = \int\limits_c^d f(z(\vphi(t)) z'(\vphi(t)) \vphi'(t) \dd{t} \overset{s=\vphi(t)}{=} \int\limits_a^b f(z(s))z'(s) \dd{s}$.
+\end{proof}
+\begin{consequence}
+    $\gamma$ --- контур, то  $\int_{\gamma} (z) \dd{z}$ можно определить как интеграл по пути, параметризующим этот контур.
+\end{consequence}
+\begin{example}
+    $f(z) = z^n$. Путь  $z\!: [0, 2\pi] \to \CC, z(t) = e^{it}$. Соответствует контуру $\gamma$ --- окружность.
+
+    $\int\limits_{\gamma}z^n \dd{z} = \int\limits_0^{2\pi} e^{i nt} \cdot i e^{it} \dd{t} = i\int\limits_0^{2\pi}e^{i(nt)^t}\dd{t} = i\int\limits_0^{2\pi}\left( \cos((n+1)t) + i\sin\left( (n+1)t \right)  \right) \dd{t} = \begin{cases}
+        2\pi i, n = -1\\
+        0, n \neq -1
+    \end{cases}$
+\end{example}
+\begin{statement}
+    $\gamma$ --- контур,  $\widetilde{\gamma}$ --- контур с обратной ориентацией, тогда  $\int\limits_{\gamma}f(z) \dd{z} = -\int\limits_{\widetilde{\gamma}} f(z) \dd{z}$
+\end{statement}
+\begin{proof}
+    $z\!: [a, b] \to \CC$ --- это параметризация  $\gamma$,  $\widetilde{z}: [-b, -a] \to \CC$ параметризация  $\widetilde{\gamma}$.
+\[
+    \int\limits_a^b f(z(t))z'(t)\dd{t} \overset{s = -t}{=} f(z(-s)) z'(-s)(-\dd{s}) = -\int\limits_a^b f(\widetilde{z}(s))\widetilde{z}(s)\dd{s} = \ldots
+.\] 
+\end{proof}
+\begin{statement}
+    $\gamma$ --- контур, тогда  $\left| \int\limits_\gamma f(z) \dd{z} \right| \le length(\gamma) \max\limits_{z \in \gamma} |f(z)|$.
+\end{statement}
+\begin{proof}
+    Расписать интеграл, ограничить $f(z)$ максимумом.
+\end{proof}
+\begin{statement}
+    $f\!: \Omega \to \CC$, пусть  $\exists F\!: \Omega \to \CC$ --- первообразная $f$. Тогда если  $z\!: [a, b] \to \Omega$ --- путь, задающий контур $\gamma$, то
+     \[
+         \int_\gamma f(z)\dd{z} = F(z(b)) - F(z(a))
+    .\] 
+\end{statement}
+\begin{proof}
+    $\frac{\dd{}}{\dd{t}} F(z(t)) = F'(z(t)) \cdot z'(t)$, и правда: $\eps > 0, F(z(t + \eps)) = F(z(t) + z'(t) \eps + o(\eps)) = F(z(t)) + F'(z(t)) (z(t) \eps + o(\eps)) + o(\eps) = F(z(t)) F'(z(t)) \cdot z'(t) \eps + o(\eps)$.
+
+    $\int\limits_{\gamma} f(z) \dd{z} = \int\limits_a^b f(z(t))z'(t)\dd{t} = \int\limits_a^b F'(z(t)) \cdot z'(t) \dd{t} = \int\limits_a^b \frac{\dd{}}{\dd{t}} F(z(t)) \dd{t} = \int\limits_a^b \frac{\dd{}}{\dd{t}} \Re F(z(t))\dd{t} + i\int\limits_a^b \frac{\dd{}}{\dd{t}} \Im F(z(t)) \dd{t} = F(z(b)) - F(z(a))$.
+\end{proof}
+\begin{theorem}
+    $\Omega$ --- область,  $f\!: \Omega \to \CC$ --- голоморфная функция.  $T \subset \Omega$ --- контур, совпадающий с границей треугольника, лежащего в  $\Gamma$. Тогда  $\int_T f(z)\dd{z} = 0$.
+\end{theorem}
+\begin{proof}
+    Картинка! $\int\limits_T f(z) \dd{z} = \int\limits_{T_1^{(1)}} f(z) \dd{z} + \int\limits_{T_2^{(1)}} f(z) \dd{z} = \int\limits_{T_3^{(1)}}$.
+
+    Картинка про аддитивность.
+
+    Тогда по индукции определим $T_i^{(k)}$, для каждого $k \ge  1$ $\left| \int\limits_T f(z)\dd{z} \right| = \left| \sum\limits_{j=1}^{4^n} \pm \int\limits_{T_j^{(k)}} f(z) \dd{z} \right| \le  4^k \cdot \max_j \left|\int\limits_{T_j^{(k)}} f(z) \dd{z}\right|$
+
+    $f(z) = f(z_0) + f'(z_0) \cdot (z - z_0) + o(z- z_0)$. Тогда $\int\limits_{T_j^{(k)}} f(z)\dd{z} = \underbracket{\int\limits_{T_j^{(k)}} f(z_0) \dd{z}}_{ = 0} + \underbracket{\int\limits_{T_j^{(k)}} f'(z_0) (z-z_0) \dd{z}}_{= 0} + \int\limits_{T_j^{(k)}} o(z-z_0)\dd{z} \implies \left| \int\limits_{T_j^{(k)}} f(z) \dd{z} \right| \le  \max_{z \in T_j(k)} \left| f(z) - f(z_0) - f'(z_0)(z-z_0) \right| \cdot Perim(T_j^{(k)}) \le o(2^{-k}diam(T)) \cdot 2^{-k} Perimtetr(T) = o(4^{-k})$.
+
+    А значит, интеграл по контуру равен 0.
+\end{proof}
+\begin{definition}
+    $\Omega$ называется односвязной, если  $\forall \gamma$ --- замкнутый (такого, что  $\gamma \subset \Omega$), ограниченная компонента связности  $\CC \setminus \gamma$ тоже содержится в $\Gamma$.
+\end{definition}
+\begin{theorem}
+    $\Omega$ --- односвязная область,  $f\!: \Omega \to \CC$ --- голоморфная функция, тогда  $\exists F\!: \Omega \to \CC$ --- первообразная  $f$,  $F'(z) = f(z)\ \forall z \in \Omega$.
+\end{theorem}
+\begin{proof}
+    $w_0 \in \Omega$ --- фиксирована.  $\forall w$ построим путь  $\gamma_w$ из  $w_0$ в  $w$, который движется либо вертикально, либо горизонтально, а также не самопересекается. 
+
+    $F(w) \coloneqq \int\limits_{\gamma_w}f(z) \dd{z}$. А дальше в следующей серии!
+\end{proof}
+\begin{consequence}
+    Если $\gamma$ --- замкнутый контур,  $f$ --- голоморфная функция в односвязной области  $\Omega$,  $\gamma \subset \Omega \implies \int\limits_\gamma f(z)\dd{z} = 0$.
+\end{consequence}

@@ -146,4 +146,51 @@
 
     $U = \left\{ (x, y) \mid x^2 + y^2 \le  1 \right\}$. $Area(U) = \int_U 1\dx\dy = \int_{[0, 2\pi) \times [0, 1]} r \dd{r} \dd{\vphi} = \pi$
 \end{example}
+\begin{theorem}[Теорема о замене переменной для $C_0(\R^n)$]
+    Пусть есть открытое $U \subset \R^n$,  $\Phi\!: U \to  \R^n$ такая, что:
+    \begin{enumerate}
+        \item $\Phi$ --- биекция из  $U$ в  $\Phi(U)$,
+        \item  $\Phi$ непрерывно дифференцируема на $U$,  $\Jac \Phi(x) \neq 0\ \forall x \in U \implies \forall f \in C_0(\R^n) \supp f \subset \Phi(U)$  выполняется $\int_{\R^n} f(x) \dx = \int_{\R^n} f(\Phi(x)) \left| \Jac \Phi(y) \right| \dy$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Если $n = 1$, то понятно, что теорема верна.
+
+    Тогда считаем, что  $n \ge 2$ и по индукции теорема верна для $k < n$.
+    $\Phi(y) = \begin{pmatrix} \vphi_1(y) \\ \vdots \\ \vphi_n(y) \end{pmatrix} $.
+
+    Простой случай: теорема верна, если $\Phi$ --- перестановка.  См. теорему выше.
+
+    Теорема верна, если $\exists j \in 1..n\!: \vphi_j(y) = y_j$. Не умаляя общности считаем  $j=1$ (иначе можно сделать перестановку). Тогда  для $\forall y_1$ --- fix положения.  $\Psi_{y_1}(y_2, \ldots, y_n) = \begin{pmatrix} \vphi_2(y_1, \ldots, y_n) \\ \vdots \vphi_n(y_1, \ldots ,y_n) \end{pmatrix} \in \R^{n-1}$.
+
+    $\Phi(y) = \begin{pmatrix} y_1 \\ \Psi_{y_1}(y_2, \ldots, y_n) \end{pmatrix}$.
+
+    Заметим, что $\Jac \Phi(y_1, \ldots, y_n) = \Jac \Psi_{y_1}(y_2, \ldots, y_n)$. Тогда по индукции  $\int_{\R^n} f(x) \dx = \int_{\R}\dd{x_1} \int_{\R^{n-1}} f(x_1, \ldots, x_n) \dd{x_2} \ldots \dd{x_n} = \int_{\R}\dd{x_1}\int f(x_1, \Psi_{x_1}(x_2, \ldots ,x_n) \left| \Jac \Psi_{x_1}(y_2, \ldots, y_n) \right| \dy = \int_{\R} \dd{y_1} \int_{\R^{n-1}} f(\Phi(y)) \left| \Jac \Phi(y) \right| \dd{y_2}\ldots\dd{y_n} = \text{то, что нужно}$
+
+    Пусть $\Phi = \Phi_1 \circ \Phi_2$, пусть теорема верна для $\Phi_1$ и  $\Phi_2$, тогда теорема верна для  $\Phi$. Это следует из того, что  $\Jac \Phi = \left( \Jac \Phi_1 \right) \circ \Phi_2 \cdot \Jac \Phi_2$.
+
+    $\forall x_0 \in U \exists r > 0$, что если  $\supp f \subset \Phi(B(x_0, r))$, то теорема верна. Наивно: представить при помощи композиции:
+    \begin{align*}
+    \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix} \xmapsto{\Phi_1} \begin{pmatrix} \vphi_1(y_1, \ldots, y_n) \\ y_2 \\ \vdots \\ y_n \end{pmatrix} \xmapsto{\Phi_0 \Phi_1^{-1}} \begin{pmatrix} \vphi_1(y_1, \ldots, y_n) \\ \vdots \\ \vphi_n(y_1, \ldots, y_n) \end{pmatrix}
+    .\end{align*}
+    Но! $\Phi_1^{-1}$ может не существовать.
+
+    Мы знаем, что $\nabla \vphi_1 \neq $. $\exists j \in \left\{ 1, \ldots, n \right\}\!: \frac{\partial \vphi_1}{\partial y_j}(x_1^0, \ldots, x_n^0) \neq 0$. 
+
+    Утверждение: $\exists r > 0\!: \Psi, \Phi_1, \Phi_0 \Psi^{-1}\Phi_1$ определены при $y \in B(y^0, r)$. И правда:
+    \begin{itemize}
+        \item $\Psi$ определена  $\forall y$, также  $\Psi^{-1}$,
+        \item $\Phi_1$ определена $y \in U$,
+        \item  $\Phi_1^{-1}\!: \Jac \Phi_1(\Psi(y^0)) = \frac{\partial \psi_1}{\partial y_j}\text{хз} \implies \Phi_1^{-1}$ определена в $\Phi_1(\Psi(B(y^0, r)))$ для  $r >0$ по теорема об обратной функции. 
+    \end{itemize}
+    
+        Теперь можно все скомпилировать:  $\forall y \in U \exists r_y >0$. Теорема верна, если  $\supp f \subset \Phi(B(y, 2r_y))$.
+
+        Зафиксируем $f \subset C_0(\R^n), \supp f \subset \Phi(U)$. Так как это компакт, то  $\exists y_1, \ldots, y_k\!: \bigcup_{i=1}^k \Phi(B(y_i, r_{y_i})) \supset \supp f$. $\forall i$ положим  $\beta_i(y) = \begin{cases}
+            \min(1, \frac{2r_{y_i}-\left| y - y_i \right| }{r_{y_i}}) & |y-y_i| \le 2r_{y_i} \\ 0 & \text{else}
+        \end{cases}$
+        $\alpha_1(x) = \beta_1(\Phi^{-1}(x))$, $\alpha_2(x) = (1-\beta_1(\Phi^{-1}(x))) \cdot \beta_2(\Psi^{-1}(x))$, \dots, $\alpha_k(x) = (1 - \beta_1(\Phi^{-1}(x)) \cdot \ldots \cdot (1 - \beta_{k-1}(\Phi^{-1}(x))$.
+
+        Тогда $x \in \supp f \implies \exists j\!: x \in \Phi(B(y_i, r_{y_i})) \implies (\alpha_1 + \ldots + \alpha_k)(x) = 1 \implies \sum \alpha_i \cdot f \equiv f$, по определению $\supp (\alpha_j \cdot  f) \subset \Phi(B(y_j, 2r_{y_j}))$. Тогда $\int_{\R^n} f(x) \dx = \sum_{j=1}^k \int_{\R^n} f_j(x) \alpha_j(x) \dx = \int_{\R^n}f(\Phi(y)) \alpha_j(\Phi(y)) \left| \Jac \Phi(y) \right| \dx$
+\end{proof}
 
