@@ -239,3 +239,77 @@ $\frac{\partial f}{\partial x} = \frac{1}{\eps}\left( \frac{\partial f}{\partial
 \begin{consequence}
     Если $\gamma$ --- замкнутый контур,  $f$ --- голоморфная функция в односвязной области  $\Omega$,  $\gamma \subset \Omega \implies \int\limits_\gamma f(z)\dd{z} = 0$.
 \end{consequence}
+\begin{definition}
+    Петля --- непрерывный образ окружности, то есть отображение вида $z\!: [a, b] \to \CC\ z(a) = z(b)$.
+\end{definition}
+\begin{definition}
+    Петля простая, если она не самопересекается, то есть $\forall x \in [a, b], y \in (x, y)\!: z(x) \neq z(y)$.
+\end{definition}
+\begin{theorem}[Теорема Жордана]
+    Плоскость разбивается простой петлей ($\gamma \in \CC$) на ограниченное связное множество $\Omega_1$ и неограниченное связное множество $\Omega_2$.
+\end{theorem}
+\begin{definition}
+    $\Omega_1$ --- это жорданова область, $\partial \Omega_1 \coloneqq \gamma$, ориентированная против часовой стрелки.
+\end{definition}
+\begin{theorem}[Гурса]
+    $T$ --- треугольник,  $f\!: \Omega \to \CC$ --- голоморфная,  $T \subset \Omega$. Тогда  $\int\limits_{\partial T} f(z) \dd{z} = 0$.
+\end{theorem}
+\begin{definition}
+    $\gamma$ --- координатный путь (петля), если  $\gamma$ составлена из конечно числа вертикальных и горизонтальных отрезков.
+\end{definition}
+\begin{lemma}
+    Пусть $\Omega$ --- односвязная область,  $\gamma \subset \Omega$ --- координатная петля, $f\!: \Omega \to \CC$ --- голоморфная. Тогда:
+    \[
+        \int\limits_\gamma f(z)\dd{z} = 0
+    .\] 
+\end{lemma}
+\begin{proof}
+    Упражнение. Можно разбить наш контур на прямоугольники. Каждый прямоугольник --- на треугольники (построить триангуляцию). Дальше теорема Гурса.
+\end{proof}
+\begin{theorem}
+    $\Omega$ --- односвязная область,  $f\!: \Omega \to \CC$ --- голоморфная, то  $\exists$ первообразная  $f$, то есть  $F\!: \Omega \to \CC\!: F'f = f$.
+\end{theorem}
+\begin{proof}
+    Возьмем $w_0 \in \Omega$.  $\forall w \exists $ координатный путь  $\gamma_w$, соединяющий  $w_0$ и  $w$,  $\gamma_w \subset \Omega$. Тогда возьмем  $F(w) \coloneqq \int_{\gamma_w} f(z) \dd{z}$.
+    \begin{enumerate}
+        \item $F(w)$ не зависит от выбора  $\gamma_w$. Если  $\gamma_w^1, \gamma_w^2$ --- два координатных пути, соединяющих  $w_0$ и  $w$, то  $\gamma = \gamma_w^1 \cup \gamma_w^2$ --- координатная петля  $\implies$ разность интегралов равна нулю.
+        \item Проверим, что  $F'(w) = f(w)$.  $F'(w) = \lim_{h \to 0} \frac{F(w+h) - F(w)}{h}$.  $F(w + h) = \int\limits_{\gamma_{w+h}}f(z) \dd{z} = \int\limits_{\gamma_w} f(z) \dd{z} + \int\limits_{\gamma_h}f(z) \dd{z} = F(w) + \int\limits_{\gamma_h} f(z) \dd{z}$.
+
+            $h^{-1}\left( F(w+h) - F(w) \right) = h^{-1}\int\limits_{\gamma_h}f(z)\dd{z} = h^{-1}\int\limits_0^1 f(w + th)h\dd{t} = \int_0^1 f(w + th) \dd{t} \xrightarrow{h \to 0} f(w)$.
+    \end{enumerate}
+\end{proof}
+\subsubsection{Формула Коши}
+\begin{theorem}
+    $\Omega \subset \CC$ --- область,  $f\!: \Omega \to \CC$ --- голоморфная функция. Пусть  $w_0 \in \Omega, r > 0\!: \overline{B}(w_o, r) \subset \Omega$. Тогда:
+    \[
+        \forall z \in B(w_0, r) = f(z) = \frac{1}{2\pi} \int\limits_{\mathclap{|w-w_0|=r}} \frac{f(w)}{w - z} \dd{w}
+    .\] 
+    Окружность против часовой стрелки ориентирована!
+\end{theorem}
+\begin{proof}
+    Картинка! $\int\limits_\gamma \frac{f(w)}{w-z}\dd{w} = 0$, так как $\gamma$ замкнутый, а $\frac{f(w)}{w-z}$ --- это голоморфная функция по $w$. 
+
+    $\int\limits_{\gamma} \frac{f(w)}{w-z}\dd{w} = \int\limits_{l} \frac{f(w)}{w-z}\dd{w} - \int\limits_{|w-z|=\eps} \frac{f(w)}{w-z}\dd{w} - \int\limits_{l}\frac{f(w)}{w-z}\dd{w} + \int\limits_{|w-w_0|=r}\frac{f(w)}{w-z}\dd{w}$. Что понятно равно $\int\limits_{|w-w_0|=r} \frac{f(w) \dd{w}}{w-z} = \int\limits_{|w-z|=\eps} \frac{f(w)}{w-z}\dd{w} = \int\limits_{|w-z|=\eps} \frac{f(z) + f(w) - f(z)}{w-z}\dd{w} = f(z) \int\limits_{|w-z|=\eps} \frac{\dd{w}}{w-z} + \int\limits_{|w-z|=\eps} \frac{f(w) - f(z)}{|w-z|=\eps}\dd{w}$. Первое слагаемое $f(z) \cdot 2\pi i$, а второе можно оценить $| \circ | \le  \max_{|w-z|=\eps} \left| \frac{f(w) - f(z)}{w - z} \right| 2\pi \eps \le (|f'(z)| +1) 2\pi \eps$
+\end{proof}
+\begin{consequence}
+    \begin{enumerate}
+        \item Голоморфные функции --- аналитичны! Пусть $f!\: \Omega \to \CC$ --- голоморфная,  $\overline{B}(w_0, r) \subset \Omega, z \in B(w_0, r)$. Тогда $f(z) = \frac{1}{2\pi i} \int\limits_{|w-w_0|=r} \frac{f(w)}{w-z} \dd{w} = \frac{1}{2\pi i} \int\limits_{|w-w_0|=r} \frac{f(w)\dd{w}}{w - w_0 - (z-w_0)} = \frac{1}{2\pi i} \int\limits_{|w-w_0| = r}f(w) \sum\limits_{n \ge 0} \frac{(z-w_0)^n}{(w-w_0)^{n+1}} \dd{w} = \sum\limits_{n \ge 0} (z-w_0)^n \frac{1}{2 \pi i} \int_{|w-w_0|=r} \frac{f(w) \dd{w}}{(w-w_0)^{n+1}}$.
+    \end{enumerate}
+    То есть $\forall z \in B(w_0, r)\ f(z) = \sum\limits_{n \ge  0} a_n\left(z - w_0  \right)^n$.
+    \item Теорема Луивилля: $f\!: \CC \to \CC$ --- голоморфная и ограниченная. Тогда $f \equiv const$.
+         \begin{proof}
+             Заметим, что $f'(z) = \frac{1}{2\pi i} \int\limits_{|w-z|=R} \frac{f(w)}{(w-z)^2} \dd{z}$. Тогда если $|f(w)| \le C \forall w$. Тогда $|f'(z)| \le  \frac{1}{2\pi} \cdot \frac{C}{R^2} 2 \pi R \ldots$.
+         \end{proof}
+     \item Основная теорема алгебры: $P \in \CC[z], \deg P = n$, тогда  $P$ имеет  $n$ корней в  $\CC$.
+          \begin{proof}
+              Докажем, что при $n \ge  1$ есть хотя бы один корень. Пусть $P(z) = \sum\limits_{i=0}^n a_iz^i$. Тогда если взять  $|f(z)| = \frac{1}{z^n (a_n + a_{n-1}\frac{1}{z} + \ldots + a_0 \frac{1}{z^n})}$
+         \end{proof}
+     \item Теорема единственности. $f\!: \Omega \to \CC$ --- голоморфная,  $\Omega$ --- область,  $f \centernot \equiv 0$. Тогда  $\left\{ z \in \Omega  \mid f(z) = 0 \right\}$ дискретно (то есть не имеет точек сгущения в $\Omega$.
+          \begin{proof}
+             Пусть $z_0, z_1, z_2, \ldots \in \Omega$, такое что $f(z_k) = 0\ \forall k \ge  0$, $z_k \to z_0, z_k \neq z_0, \forall k \ge  1$.
+
+             Пусть  $r > 0\!: \overline{B}\left( z_0, r \right) \subset \Omega, f(z) = \sum\limits_{n \ge 0} a_n (z-z_0)^n, \exists d\!: a_d \neq 0$.
+
+             $f(z) = (z - z_0)^d \sum\limits_{n \ge  d} a_n(z-z_0)^{n-d}= \left( z-z_0 \right)^d g(z)$. $g$ --- голоморфная в  $B(z_0, r), g(z_0) \neq 0 \implies \exists N \forall n \ge  N\ g(z_n) \neq 0 \implies f(z_n) \neq 0?!$
+         \end{proof}
+\end{consequence}
