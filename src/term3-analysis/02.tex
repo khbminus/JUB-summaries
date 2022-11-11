@@ -497,3 +497,76 @@ $\int\limits_{\partial \Omega} (\log f(z))' \dd{z} = \int\limits_{\partial \Omeg
 
     Чтобы увидеть $1$, заметим, что  $\exists z_0 \leftarrow \Cl \Omega\!: |f(z_0)| = \max\limits_{z \in \Cl \Omega} |f(z)|$. Если $z_0 \in \Omega$, то ?! с рассуждениями выше.
 \end{proof}
+
+Цель дальнейших изысканий: $\frac{\sin \pi z}{\pi} = z \prod\limits_{n \ge  1} \left( 1 - \frac{z^2}{n^2}\right) $ 
+\begin{theorem}[Теорема Мореры]
+    Пусть $\Omega \in \CC$ --- область,  $f\!: \Omega \to \CC$ --- непрерывная, тогда  \[
+        \forall\ \text{треугольник}\ T \subset \Omega\!:\int\limits_{\partial T} f(z) \dd{z} = 0 \implies f\text{ --- голоморфная}
+    .\] 
+\end{theorem}
+\begin{proof}
+    Не умаляя общности (достаточно доказать, что $\forall z \in \Omega, r > 0$:  $B(z, r) \subset \Omega \implies f$ --- голоморфна в $B(z, r)$.
+
+    Докажем, что  $\exists F\!: \Omega \to \CC$ такая что  $\forall z \in \Omega \exists F'(z) = f(z)$. 
+
+    Зафиксируем  $z_0 \in \Omega$, $\forall z \in \Omega \exists$ координатный путь  $\gamma_z$ соединяющий  $z_0$ и $z$.  $F(z) = \int\limits_{\gamma_z} f(\xi) \dd{\xi}$, $F$ --- удовлетворяет по тем же причинам, что и $\forall$ голоморфная функция имеет первообразную.  
+\end{proof}
+\begin{consequence}
+    $\Omega \subset \CC$ --- область,  $f_n, f\!: \Omega \to \CC$, такая что  $f_n$ --- голоморфная  $\forall n \ge 1$. $\forall K \Subset \Omega\quad \sup_{K}  \left| f_n - n \right| \xrightarrow{n \to +\infty} 0$.
+
+    Тогда $f$ голоморфна в  $\Omega$.
+\end{consequence}
+\begin{proof}
+    \begin{enumerate}
+        \item $f$ непрерывна, так как равномерный предел непрерывный --- непрерывная функция.
+        \item  $\forall T \subset \Omega$ --- треугольник  $\int\limits_{\partial T} f(z) \dd{z} = \lim\limits_{n \to +\infty} \int\limits_{\partial T}f_n(z) \dd{z} = 0 \implies f$ голоморфная.
+    \end{enumerate}
+\end{proof}
+\begin{lemma}
+    $f_n, f\!: \Omega \to \CC$ голоморфные, $\forall K \Subset \Omega\!: \sup\limits_{K} \left| f_n - f \right| \xrightarrow{n \to +\infty} 0$.
+
+    Тогда $\forall K \Subset \Omega\!: \sup\limits_{K} \left| f'_n - f' \right| \xrightarrow{n \to +\infty} 0$.
+\end{lemma}
+\begin{proof}
+    $K \Subset \Omega, \exists \rho > -\!: B(K, r) = \bigcup\limits_{z \in K} B(z, r) \Subset \Omega$.
+
+    $\sup\limits_{z \in K} \left| f'_n(z) - f'(z) \right| = \sup\limits_{z \in K} \left| \frac{1}{2 \pi i} \int\limits_{|\xi - z| = r} \frac{f_n(\xi) - f(\xi)}{(\xi - z)^2} \dd{\xi} \right| \le \sup\limits_{z \in K} \left[ \frac{1}{r} \cdot \sup\limits_{\xi - z = r} |f_n(\xi) - f(\xi)| \right] \le \frac{1}{r} \cdot  \sup\limits_{z \in B(K, r)} \left| f_n(\xi) - f(\xi) \right| \xrightarrow{n \to +\infty} 0$.
+\end{proof}
+
+\begin{consequence}
+    $f_n, f\!: \Omega \to \CC$ --- как в лемме выше, тогда  $\forall K \Subset \Omega\setminus \left\{ z\!: f(z) = 0 \right\}\!: \sup\limits_{K} \left| (\log f_n)' - (\log f)' \right| \xrightarrow{n \to +\infty} 0$.
+\end{consequence}
+\begin{proof}
+    $\sup\limits_{z \in K} \left| \frac{f'_n(z)}{f_n(z)} - \frac{f'(z)}{f(z)} \right| \to 0$. Это следует из того, что
+    \begin{enumerate}
+        \item $\inf\limits_{z \in K} \left| f(z) \right| > 0 \iff \sup\limits_{K} \frac{1}{|f|} < \infty$.
+        \item $\sup\limits_{K} \left| f'_n - f' \right| \to 0$ и $\sup\limits_{K}|f - f_n| \to 0$.
+    \end{enumerate}
+\end{proof}
+\Subsection{Бесконечные произведения}
+\begin{remark}
+    $a_n \ge 0$, тогда $\prod\limits_{n \ge  1} (1 + a_n)$ сходится $\iff \sum\limits_{n \ge  1} a_n < \infty$.
+
+    Более того, $\left| \prod_{n \ge 1}(1+a_n) - \prod_{n=1}^{N} (1+a_n) \right| = \prod_{n=1}^{N} (1+a_n) \left( \prod\limits_{n > N}(1+a_n) - 1 \right) = \prod_{n=1}^{N} (1+a_n) \left[ \exp \left[ \sum\limits_{n > N}\log(1+a_n) \right] - 1 \right] \le \prod_{n=1}^{N} (1+a_n) \left( \exp \left[ \sum\limits_{n > N}a_n \right] - 1 \right)   $
+\end{remark}
+\begin{statement}
+    $f_n\!: \Omega \to \CC$ --- голоморфные функции и  $\forall K \Subset \Omega \exists a_n > 0$, такие что  $\sup\limits_{K}\left| f_n(z) \right| \le  a_n, \sum a_n < \infty$. 
+
+    Тогда $F(z) = \prod_{n \ge 1}(1 + f_n(z))$ корректно определена и голоморфна в $\Omega$.
+\end{statement}
+\begin{proof}
+    \begin{enumerate}
+        \item $F(z)$ корректно определена, так как  $\prod$ сходится.
+        \item $K \Subset \Omega$,  $a_n$ как в условии, тогда
+            \begin{align*}
+                \sup\limits_{z in K} \left| F(z) - \prod_{n=1}^{N} (1 + f_n(z))  \right| \le  \prod_{n=1}^{N} (1+a_n) \left[ \exp(\sum\limits_{n > N} a_n) - 1\right] \xrightarrow{N \to +\infty} 0
+            .\end{align*}
+        Следовательно $F$ голоморфна в  $\Omega$ по следствию из теоремы Мореры.
+    \end{enumerate}
+\end{proof}
+\begin{consequence}
+   $f_n, F$ --- как в утверждении выше, тогда $(\log F(z))' = \sum\limits_{n \ge  1} \frac{f'_n(z)}{1 + f_n(z)}\quad \forall z\!: F(z) \neq 0$.  
+\end{consequence}
+\begin{proof}
+    Пусть $F_n(z) = \prod_{n=1}^{N} (1 + f_n(z))$, тогда $\forall K \Subset \Omega$.  $\sup\limits_{K} \left| F_n - F \right| \to 0 \implies (\log F_n(z))' \to (\log F(z))' \quad \forall z\!: F(z) \neq 0$.
+\end{proof}
