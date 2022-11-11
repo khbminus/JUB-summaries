@@ -313,3 +313,187 @@ $\frac{\partial f}{\partial x} = \frac{1}{\eps}\left( \frac{\partial f}{\partial
              $f(z) = (z - z_0)^d \sum\limits_{n \ge  d} a_n(z-z_0)^{n-d}= \left( z-z_0 \right)^d g(z)$. $g$ --- голоморфная в  $B(z_0, r), g(z_0) \neq 0 \implies \exists N \forall n \ge  N\ g(z_n) \neq 0 \implies f(z_n) \neq 0?!$
          \end{proof}
 \end{consequence}
+
+\begin{definition}
+    $\Omega$ --- односвязное область,  $\partial \Omega$ --- кусочно гладкий путь.  $f\!: \partial \Omega \to \CC$ непрерывна, голоморфна в  $\Omega$.
+
+    Тогда  $\int\limits_{\partial \Omega} f(z) \dd{z} = 0$.
+\end{definition}
+
+Пояснение: $r_n\!: [0, 1] \to \Omega$ --- кусочно гладкий замкнутый путь  $\gamma_n$.  $r_n \to r \implies 0 = \int\limits_{\gamma_n} f(z) \dd{z} \to \int\limits_{\partial \Omega}f(z) \dd{z} = 0$
+
+\begin{definition}
+    $\Omega$ --- односвязная область,  $\partial \Omega$ --- кусочно гладкий путь,  $z_1, \ldots, z_n \in \Omega$, $\eps > 0\!: \overline{B}(z_k, \eps) \subset \Omega\ \forall k=1..n$, $C_\eps(z_k) = \left\{ z\!: |z-z_k| = \eps \right\} \implies \exists$ кусочно гладкий путь $r_k\!:[0, 1] \to \CC\!: r_k(0) \in C_\eps(z_k), r_k((0, 1)) \subset \Omega \setminus \bigcup \overline{B}(z_k, \eps), r_k([0, 1]) \cap r_j([0, 1]) = \emptyset\ k \neq j$
+\end{definition}
+
+\begin{definition}
+    $\Omega$ --- область, $z_0 \in \Omega$,  $f\!: \Omega \setminus \left\{ z_0 \right\} \to \CC$ голоморфная. Тогда $z_0$ --- особенность  $f$. Различают 3 типа особенностей:
+    \begin{itemize}
+        \item Устранимая $\iff$ $f$ ограничена в  $B(z_0, \eps) \setminus \left\{ z_0 \right\} $ для некоторого $\eps > 0$.
+        \item Полюс  $\iff$ $h(z) = \frac{1}{f(z)}$ определена и голомофрна в $B(z_0, \eps)$ для некоторого $\eps > 0$.
+        \item Существенная  $\iff$ не 1 или 2.
+    \end{itemize}
+\end{definition}
+\begin{theorem}[Об устранимой особенности]
+    Пусть $\Omega$ --- область,  $z_0 \in \Omega$,  $f\!: \Omega \setminus \left\{ z_0 \right\} \to \CC$ --- голоморфна и $z_0$ --- устранимая особенность  $f$. Тогда  $\exists \lim\limits_{z \to z_0} f(z) = f(z_0)$ и $f$ является голоморфной в  $\Omega$.
+\end{theorem}
+\begin{proof}
+    Возьмем  $\eps > 0\!: \overline{B}(z_0, \eps) \subset \Omega$. Рассмотрим $F(z) = \frac{1}{2 \pi i} \int\limits_{|\xi - z_0| = \eps} \frac{f(\xi) \dd{\xi}}{\xi - z}$. 
+
+    Докажем, что $F(z) = f(z)\ \forall z \in B(z_0, \eps) \setminus \{z_0\}$ 
+
+    $\gamma$ --- контур  $\partial \left( B(z_0, \eps) \setminus \left( \overline{B}(z_0, \delta) \cup \overline{B}(z, \delta) \cup l_1 \cup l_2 \right)  \right)$. Тогда $\int\limits_{\gamma} \frac{f(\xi) \dd{\xi}}{\xi - z} = 0 = \int\limits_{|\xi - z_0| = \eps} \frac{f(\xi)\dd{\xi}}{\xi - z} - \int\limits_{|\xi - z_0| = \delta} \frac{f(\xi) \dd{\xi}}{\xi - z}.$
+
+    Тогда $\int\limits_{|\xi - z| = \delta} \frac{f(\xi) \dd{\xi}}{\xi - z} = 2\pi i f(z)$. Тогда оценим $\left| \int\limits_{|\xi - z_0| = \delta} \frac{f(\xi) \dd{x}}{\xi - z} \right| \le 2 \pi \delta \sup |f(\xi)|$.
+\end{proof}
+\begin{lemma}
+   $f\!: \Omega \setminus \left\{ z_0 \right\} \to \CC$ --- голоморфная, $z_0$ --- полюс. Тогда  $\exists \eps > 0$,  $\vphi\!: B(z_0, \eps) \to \CC$ --- голоморфная,  $\vphi(z_0) \neq 0$,  $f(z) = (z - z_0)^{-d} \cdot \vphi(z), d \in \N$. 
+\end{lemma}
+\begin{proof}
+   $h(z) = \frac{1}{f(z)}, h(z_0) = 0 \implies h(z) = (z-z_0)^{d} \cdot g(z), g(z_0) \neq 0$. $f(z) = \frac{1}{h(z)} = (z-z_0)^{-d} \frac{1}{g(z)} = \vphi(z)$.
+\end{proof}
+\begin{consequence}
+    $f$ --- как в лемме, то  $\exists \eps > 0\!: \forall z \in B(z_0, \eps)$.
+
+    $f(z) = \sum\limits_{n \ge -d} a_n (z-z_0)^n = a_{-d}(z-z_0)^{-d} + a_{-d + 1}(z-z_0)^{-d+1}+\ldots+a_{-1}(z-z_0)^{-1}+\psi(z)$, где $\psi(z)$ --- голоморфная.
+
+    $f$ называется рядом Лорана. Все, что не  $\psi$ --- главная часть ряда Лорана.
+\end{consequence}
+\begin{proof}
+    $f(z) = \frac{\vphi(z)}{(z-z_0)^d} = (z-z_0)^{-d} \sum\limits_{n \ge  0} b_n (z-z_0)^n$
+\end{proof}
+\begin{definition}
+    $f\!: \Omega \setminus \left\{ z_0 \right\} \to \CC$ голоморфная, $z_0$ --- полюс, $f(z) = \sum\limits_{n \ge  -d}a_n(z-z_0)^n$. 
+
+    Тогда \textbf{вычет $f$ в  $z_0$} --- $a_{-1}$, обозначение $\Res_{z_0} f = a_{-1}$.
+\end{definition}
+\begin{lemma}
+    $Omega$ --- область,  $z_0 \in \Omega$,  $f\!: \Omega \setminus \left\{ z_0 \right\} \to \CC$ --- голоморфная, $z_0$ --- полюс, тогда, если $\eps > 0$ достаточно мало, то  $\int\limits_{|z - z_0| = \eps} f\left( z \right) \dd{z} = 2 \pi i \Res_{z_0} f$.
+\end{lemma}
+\begin{proof}
+    $f(z) = \sum\limits_{n = -d}^{-1} a_n (z-z_0)^n + \psi(z), z \in B(z_0, \alpha \eps)$.
+
+    Тогда $\int\limits_{\left| z-z_0 \right| = \eps} f(z) \dd{z} = \sum\limits_{n = -d}^{-1} \int\limits_{\left| z - z_0 \right| = \eps}a_n(z-z_0)^n \dd{z} + \int\limits_{\left| z-z_0 \right| = \eps}\psi(z) \dd{z} = 2 \pi i a_{-1}$
+\end{proof}
+\begin{lemma}
+    $f\!: \Omega \setminus \left\{ z_0 \right\}$ --- голоморфная, $z_0$ --- полюс порядка $k$. Тогда:
+     \[
+         \Res_{z_0}f = \lim\limits_{z \to z_0} \frac{1}{(k-1)!}\left( \frac{\dd{}}{\dd{z}} \right)^{k-1}\left( (z-z_0)^k f(z) \right) 
+    .\] 
+\end{lemma}
+\begin{proof}
+    $f(z) = \sum\limits_{n \ge -k}a_n (z-z_0)^n \implies (z-z_0)^k f(z) = \sum\limits_{n \ge  0}a_{n - k}(z-z_0)^n \implies (z-z_0)^k f(z)$ голоморфна в $B(z_0, \eps)$ в том числе в $z_0$ и формула выше --- формула для коэффициентов ряда Тейлора. 
+\end{proof}
+\begin{definition}
+    Пусть $\left\{ z_1, \ldots \right\} \subset \Omega$ --- дискретное подмножество $\Omega$. Тогда  $f\!: \Omega \setminus \left\{ z_i \right\} \to \CC$ называется мероморфной функцией в $\Omega$, если
+     \begin{itemize}
+        \item $f$ --- голоморфной,
+        \item  $\forall k, z_k$ --- полюс  $f$.
+    \end{itemize}
+\end{definition}
+\begin{lemma}
+    $f, g\!: \Omega \to \CC$ --- голоморфная,  $g \not \equiv 0$, тогда  $\frac{f}{g}$ --- мероморфна в $\Omega$.
+\end{lemma}
+\begin{proof}
+    Пусть $\left\{ z_1, z_2, \ldots \right\} \subset \Omega$ --- нули $g$, тогда  $\left\{ z_1, z_2, \ldots \right\}$ --- дискретное множество $\implies h = \frac{f}{g}$ задана и голомофорна в $\Omega \setminus \left\{ z_1, \ldots \right\} $.
+
+    $z_k$ --- ноль порядка $d$ для  $g$, тогда
+    \begin{itemize}
+        \item если $f(z_k) \neq 0$, то локально $h(z) = \frac{1}{g(z) / f(z)} \implies \frac{1}{h(z)} = \frac{g\left(z  \right)}{f(z)}$ голоморфна в $z_0$ и равна нулю.
+        \item $f(z_k)  0$, то пусть  $\widetilde{d}$ --- порядок нуля  $f$ в  $z_k$. Тогда локально  $g(z) = (z-z_k)^{d} \vphi(z), f(z) = (z-z_k)^{\widetilde{d}} \widetilde{\vphi}(z)$. $\frac{f(z)}{g(z)} = (z-z_k)^{\widetilde{d} - d} = \frac{\vphi(z)}{\widetilde{\vphi}(z)}$ --- голоморфная в $z_0$.
+    \end{itemize}
+\end{proof}
+\begin{theorem}
+    Любая мероморфная функция имеет вид $\frac{f}{g}$, $f, g$ --- голоморфная.
+\end{theorem}
+\begin{theorem}[Теорема о вычетах]
+    Пусть $\Omega$ --- область,  $z_1, \ldots, z_n \in \Omega$. $f\!: \Cl \Omega \setminus \left\{ z_1, \ldots, z_n \right\} \to \CC$ --- непрерывная, голоморфная в $\Omega \setminus \left\{ z_1, \ldots, z_n \right\}$.
+
+    Пусть $f$ имеет полюса в  $z_1, \ldots ,z_n$ или устранимые особенности. Тогда
+    \[
+        \int\limits_{\partial \Omega} f(z) \dd{z} = 2 \pi i \sum\limits_{k=1}^n \Res_{z_k}f
+    .\] 
+\end{theorem}
+\begin{remark}
+    $\frac{f(\xi)}{\xi - z}$ --- меромофрна в $B(z_0, \eps) \implies \int\limits_{\left| \xi - z_0 \right| } \frac{f(\xi) \dd{\xi}}{\xi - z} = 2\pi i \Res(\ldots) \implies$ формула Коши.
+\end{remark}
+\begin{proof}
+    Картинка.
+    $\Omega_\eps = \Omega \setminus \left( \bigcup_{k=1}^n \overline{B}(z_k, \eps) l_k \right), f$ --- голоморфная в $\Omega_\eps$.  $0 = \int\limits_{\partial \Omega_\eps} f(z) \dd{z} = \int\limits_{\partial \Omega} f(z) \dd{z} - \sum\limits_{k=1}^n \int\limits_{|z-z_k| = \eps} f(z) \dd{z} \implies \int\limits_{\partial \Omega} f(z) \dd{z} = \sum\limits_{k=1}^n \int\limits_{\left| z - z_k \right| = \eps} f(z) \dd{z} = 2 \pi i \sum\limits_{k=1}^n \Res_{z_k} f$.
+\end{proof}
+\Subsection{Принцип аргумента}
+Пусть $z = r e^{i\theta}, r, \theta \in \R, r > 0$, тогда $\theta = \arg z$. $\arg z$ определен с точностью до  $2\pi$.
+\begin{remark}
+    $z\!:[a, b] \to \CC \setminus \left\{ \theta \right\}$ --- непрерывна, то $\exists r, \theta\!: [a, b] \to \R$ непрерывна и  $r(t) > 0 \forall t \in [a, b]$,  $z(t) = r(t) e^{i\theta(t)}$.
+\end{remark}
+\begin{example}
+    Если $z$ параметризует окружность, то можно положить  $z(t) = e^{2 \pi}, z\!: [0, 2\pi] \to \CC, \theta(t) = t$.
+\end{example}
+$U \subset \CC \setminus \left\{ 0 \right\}$ --- односвязное, $z_0 = r_0 e^{i \theta_0} \in U$, тогда $\exists \log\!: U \to \CC$, такой что  $\log(z_0) = \log r_0 + i\theta_0, \frac{\dd{}}{\dd{z}} \log z = \frac{1}{z}$.
+
+\begin{definition}
+    $\Omega$ --- любая область,  $f\!: \Omega \to \CC$ голоморфная,  $f \not \equiv 0$, тогда логарифмическая  производная то $\left( \log f\left(z  \right)  \right)' \coloneqq \frac{f'(z)}{f(z)}$.
+\end{definition}
+\begin{statement}
+    $(\log f)'$ --- это мероморфная функция в $\Omega$, все полюсы  $\left( \log f \right) '$ простые и соответствуют нулям $f$. Если  $f(z_0) = 0$, то $\Res_{z_0}(\log f)' = \Ord_{z_0} f$ --- порядок нуля. 
+\end{statement}
+\begin{proof}
+    Пусть $f(z_0) \neq 0 \implies \frac{f'(z)}{f(z)}$ --- голоморфная в окрестности $z_0 \implies (\log f)'$ голоморфна в $\Omega \setminus \left\{ z \!: f(z) = 0 \right\}$.
+
+    Пусть $f(z_0) = 0$, напишем  $f\left(z  \right) = (z-z_0)^{d} g(z)$, где $d = \Ord_{z_0} f, g(z_0) \neq 0$.
+\end{proof}
+\begin{theorem}[Принцип аргумента]
+    $\Omega$ --- односвязное, ограниченное,  $\partial \Omega$ --- кусочно гладкая,  $f$ --- голоморфная в окрестности  $\Cl \Omega$ (то есть $\exists \Omega' \supset \Cl \Omega$и  $f\!: \Omega' \to \CC$ --- голомофорная) и $f(z) \neq 0\, \forall z \in \partial \Omega$. Тогда  \[
+        \int\limits_{\partial \Omega} \left( \log f(z) \right)' \dd{z}] = 2\pi i \sum\limits_{z \in \Omega\!: f(z) = 0} \Ord_{z}f \eqqcolon 2 \pi i \text{\# нулей в }f\text{ с учетом кратности}
+    .\] 
+\end{theorem}
+\begin{proof}
+    $\int\limits_{\partial \Omega} \left( \log f(z) \right)' \dd{z} = 2 \pi i \sum\limits_{z\text{--- полюс}} \Res_{z} (\log f)' = 2\pi i \sum\limits_{z\!: f(z) = 0} \Ord_z f$
+\end{proof}
+
+Пусть $z\!: [a, b] \to \CC$ --- параметризация $\partial \Omega$, пусть также  $f(\Omega') = \Cl$. Тогда  $\Log f(z)$ корректно определена, $(\log f(z))' = \frac{\dd{}}{\dd{z}} \Log f(z)$.
+
+$\int\limits_{\partial \Omega} (\log f(z))' \dd{z} = \int\limits_{\partial \Omega} \frac{\dd{}}{\dd{z}} \Log f(z) \dd{z} = \int\limits_{a}^{b} \frac{\dd{}}{\dd{z}}\Log f(z(t)) z'(t) \dd{t} = \int\limits_{c}^{b} \frac{\dd{}}{\dd{t}} \left( \Log f(z(t)) \right) \dd{t} = \int\limits_{a}^{b} \frac{\dd{}}{\dd{t}} \left( \log \left| f(z(t)) \right| + i \arg f(z(t)) \right) \dd{t} = \log \left| f(z(t)) \right| - \log |f(z(a))| + i \arg f(z(b)) - i \arg f(z(a))$
+
+\begin{example}
+    $\Omega = \mathbb{D}, f(z) = z^n, z\!: [0, 2\pi] \to \CC, z(t) = e^{it}$. Тогда $f(z(t)) = e^{i n t}, \theta(t) = nt$ 
+
+    $\int\limits_{\partial \Omega} \left( \log f(z) \right)' \dd{z} = i(\theta(2\pi) - \theta(0)) = n 2 \pi i$.
+\end{example}
+\begin{theorem}[Теорема Руше]
+    Пусть $\Omega$ --- односвязная область, ограниченная  $\partial \Omega$ --- кусочно гладкий путь.$f, g$ --- голоморфная в окрестности  $\Cl \Omega$, $\forall z \in \partial \Omega\quad |f(z)| > |g(z)|$.
+
+    Тогда  \# нулей $f$ в  $\Omega$ с учетом кратности равно количеству нулей  $f+g$ в  $\Omega$ с учетом кратности.
+\end{theorem}
+\begin{proof}
+    $t \in [0, 1]$. Рассмотрим  $\Phi(t) = \frac{1}{2 \pi i} \int\limits_{\partial \Omega} (\log (f+tg) (z))' \dd{z} = \frac{1}{2 \pi i}\int\limits_{\partial \Omega} \frac{f'(z) + tg'(z)}{f(z) + tg(z)} \dd{z}$.
+
+    \begin{enumerate}
+        \item $\Psi(z, t)\!: \partial  \Omega \times [0, 1] \to \CC$.  $\Psi(z, t) = \frac{f'(z) + tg'(z)}{f(z) + tg(z)}$ непрерывна $\implies \Phi(t) = \frac{1}{2 \pi i} \int\limits_{\partial \Omega} \Psi(z, t) \dd{z}$ непрерывна.
+        \item $\forall t \in [0, 1], \Phi(t) \in \Z$ по теореме выше.
+    \end{enumerate}
+
+    Из 1 и 2 следует, что $\Phi(t) \equiv n, n \in 'Z$. Но  $\Phi(0) =$ количество нулей  $f$ в  $\Omega$ с учетом кратности, а  $\Phi(1)$ --- количество нулей  $f+g$ в  $\Omega$ с учетом кратности.
+\end{proof}
+\begin{theorem}
+    $\Omega$ --- область,  $f\!: \Omega \to \CC$ --- голоморфная непостоянная, тогда $\forall z_0 \in \Omega, \delta > 0\!: \overline{B}(z_0, r) \subset \Omega \exists \delta > 0\!: f(B(z_0, r)) \supset B(f(z_0), \delta)$.
+\end{theorem}
+\begin{proof}
+    Немного уменьшив $r$ мы можем добиться того, чтобы  $|f(z) - f(z_0)| \neq 0\quad \forall z \!: |z-z_0| = r > 0$.
+
+    Возьмем $\delta = \min\limits_{z \in C_r(z_0)} |f(z) - f(z_0)| > 0$. Пусть $\lambda \in B(f(z_0), \delta)$, тогда по теореме Руше. $1 \le $ количество нулей $f(z) - f(z_0)$ в $B(z_0, r)$ с учетом кратности и это равно числу нулей $f(z) - f(z_0) - \lambda$ в том же шаре.
+
+    Тогда $\exists z \in B(z_0, r)\!: f(z) = f(z_0) + \lambda$, такая что $\lambda \in B(0, \delta)$ произв., имеем  $f(B(z_0, r)) \supset B(z_0, \delta)$.
+\end{proof}
+\begin{consequence}
+   Пусть  $\Omega$ --- ограниченная область,  $f\!: \Cl \Omega \to \CC$ непрерывна,  $f$ голоморфная в  $\Omega$. Тогда
+   \begin{enumerate}
+       \item $\sup\limits_{z \in \Omega} |f(z)| = \max\limits_{z \in \Cl \Omega} |f(z)| = \max_{z \in \partial \Omega} |f(z)|$
+       \item Если $\exists z_0 \in \Omega\!: |f(z_0)| = \sup\limits_{z \in \Omega} |f(z)| \implies f \equiv const$.
+   \end{enumerate}
+\end{consequence}
+\begin{proof}
+    Пусть $f$ не постоянна,  $z_0 \in \Omega, r > 0\!: \overline{B}(z_0, r) \subset \Omega$. Тогда $\exists \delta > 0\!: f(B(z_0, r)) \supset B(f(z_0), \delta) \implies \exists z \in B(z_0, r)\!: |f(z)| > |f(z_0)| \implies |f(z_0)| < \sup\limits_{z \in \Omega} |f(z)| \implies 2$.
+
+    Чтобы увидеть $1$, заметим, что  $\exists z_0 \leftarrow \Cl \Omega\!: |f(z_0)| = \max\limits_{z \in \Cl \Omega} |f(z)|$. Если $z_0 \in \Omega$, то ?! с рассуждениями выше.
+\end{proof}
