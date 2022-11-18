@@ -570,3 +570,34 @@ $\int\limits_{\partial \Omega} (\log f(z))' \dd{z} = \int\limits_{\partial \Omeg
 \begin{proof}
     Пусть $F_n(z) = \prod_{n=1}^{N} (1 + f_n(z))$, тогда $\forall K \Subset \Omega$.  $\sup\limits_{K} \left| F_n - F \right| \to 0 \implies (\log F_n(z))' \to (\log F(z))' \quad \forall z\!: F(z) \neq 0$.
 \end{proof}
+
+\begin{lemma}
+    Пусть $f, g\!: \Omega \to \CC$ голоморфная,  $\left( \log f \right)' \equiv \left( \log g \right)'$.
+
+    Тогда $\exists c \in \CC\!: f(z) = c g(z)\quad \forall z \in \Omega$.
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \left( \log f \right)\ - \left( \log g \right)' \equiv \left( \log \frac{f}{g} \right) ' \equiv 0 \implies \frac{\left( \frac{f}{g} \right) '}{\frac{f}{g}}\equiv 0 \implies \left( \frac{f}{g} \right)' \equiv 0 \implies f = c \cdot g
+    .\end{align*}
+\end{proof}
+\begin{theorem}
+    $\forall z \in \CC\!: \frac{\sin \pi z}{\pi} = z \prod\limits_{n \ge 1}\left( 1 - \frac{z^2}{n^2} \right)$.
+\end{theorem}
+\begin{proof}
+    Проверим, что $\left( \log \frac{\sin \pi z}{\pi} \right) ' = \log \left( z \prod\limits_{n \ge 1} \left( 1 - \frac{z^2}{n^2} \right)  \right)$.
+
+    Левое слагаемое равно $\pi \ctg \pi z$, правое ---  $\frac{1}{2} + \sum\limits_{n \ge  1} \frac{2z}{z^2 - n^2} = \lim\limits_{n \to \infty} \sum\limits_{n = -N}^N \frac{1}{z - n}$. Поисследуем разность этих штук --- функцию $F(z)$.
+     \begin{enumerate}
+        \item $F(z + 1) = F(z), F(-z) = -F\left(z  \right) $.
+        \item $F$ голоморфна  $\CC \setminus \Z$ и имеет устранимые особенности в $\Z$. Обе эти функции имеют простые нули в $\Z$, обе лог. производные будут иметь там полюса с вычетом 1, тогда в разности в ряду Лорана вычеты сократятся.
+        \item $F$ --- ограничена в  $\CC$. Достаточно показать, что  $F$ ограничена в  $H = \left\{ z \mid \substack{-\frac{1}{2} \le \Re z \le  \frac{1}{2}\\ \Im z \ge 1} \right\} $
+
+        При $z \in H$ будем использовать, что  $\left| F(z) \right| \le  \left| \pi \cdot \ctg \pi z \right| + \left| \frac{1}{z} \right| + \sum\limits_{n \ge  1} \left| \frac{2z}{z^2-n^2} \right|$. 
+
+        $z = x + iR, R \ge 1, x \in \left[ -\frac{1}{2}, \frac{1}{2} \right]$.
+
+        Тогда $\left| \ctg \pi (x + iR) \right| = \left| \frac{e^{\pi i x - R} + e^{-\pi i x + R}}{e^{\pi i x - R} - e^{-\pi i x + r}} \right|  = \frac{\left| e^{2 \pi i x - 2R} + 1 \right| }{\left| e^{2 \pi i x -2R} - 1 \right| } \le \frac{1 + e^{-2R}}{1 - e^{-2R}} \le  \frac{1+e^{-2}}{1 - e^{-2}}$. Откуда получаем $\sum\limits_{n \ge 1} \left| \frac{2(x+iR)}{x^2 + 2iRx - R^2 - n^2} \right| \le \sum\limits_{n \ge 1} \frac{4R}{R^2 + n^2} = \frac{4}{R} \sum\limits_{n \ge  1} \frac{1}{1 + \left( \frac{n}{R} \right) ^2} \le  4 \int\limits_{0}^{\infty}  \frac{\dx}{1+x^2} = 2\pi \implies F$ ограничена $\implies F \equiv \mathrm{const}$ по теореме Луивилля  $\implies F \equiv 0$, так как  $F$ нечетна.
+    \end{enumerate}
+    Значит $\frac{\sin \pi z}{\pi} = z \prod \left( 1 - \frac{z^2}{n^2} \right) \cdot C$, но $C = 1$, потому что можно сравнить асимптотики около нуля.
+\end{proof}
