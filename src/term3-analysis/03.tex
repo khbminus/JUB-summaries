@@ -1,0 +1,94 @@
+%!Tex Root=**/conspect.tex
+%!TeX program = xelatex
+\begin{lemma}[Техническая лемма]
+    $\Omega \subset \CC$ --- область.  $I \subset \R$ --- интервал или луч.  $F\!: \Omega \times I \to \CC$ непрерывная, $\forall x \in I\!: F(z, x)$ голоморфна по  $z$.
+
+     $\forall K \Subset \Omega\exists \vphi\!: I \to \R_{\ge  0}\!: \sup\limits_{z \in K} \left| F(z, x) \right| \le  \vphi(x), \int\limits_{I} \vphi(x) \dx < \infty$. 
+
+     Тогда $f(z) = \int\limits_{I} F(z, x) \dx$ корректно определена и голомофрна в $\Omega$, а  $f'(z) = \int\limits_{I} \frac{\partial}{\partial z} F(z, x) \dx$.
+\end{lemma}
+\begin{proof}
+   $I_1 \subset I_2 \subset I_3 \subset \ldots \subset I, I_k$ --- отрезок, $\bigcup I_k = I$.  $f_n(z) = \int\limits_{I_n} F(z, x) \dx$.
+   \begin{enumerate}
+       \item $f_n$ --- непрерывна по  $z$.
+       \item  $f_n$ голомофрная: пусть  $T \subset \Omega$ --- треугольник,  $\int\limits_{\partial T} f_n(z)\dd{z} = \int\limits_{\partial T}\int\limits_{I_n} F(z, x) \dx \dd{z} = \int\limits_{I_n} \int\limits_{\partial T} F(z, x) \dd{z} \dx = 0$.
+       \item $f'_n(z) = \frac{1}{2 \pi i} \int\limits_{\left| \xi - z \right|  = \eps} \frac{f_n(z)\dd{\xi}}{(\xi - z)^2} = \int\limits_{I_n} \left( \frac{1}{2\pi i} \int\limits_{\left| \xi - z \right| = \eps} \frac{F(\xi, x)\dd{\xi}}{(\xi - z)^2} \right) \dx = \int\limits_{I_n} \frac{\partial}{\partial z}F(z, x)\dx$.
+       \item $\forall K \Subset \Omega\!: \sup\limits_{K} \left| f_n - f \right| \xrightarrow{n \to +\infty} 0$. $\sup\limits_{z \in K} |f_n(z) - f(z)| = \sup\limits_{z \in K}\left| \int\limits_{I_n} F(z, x) \dx - \int\limits_{I} F(z, x) \dx \right| = \sup\limits_{z \in K} \left| \int\limits_{I - I_n} F(z, x)\dx \right| \le  \int\limits_{I - I_n} \vphi(x) \dx \to 0$\dots 
+   \end{enumerate}
+\end{proof}
+\begin{definition}
+    $\Gamma$-функция --- функция  $\Gamma\left( p  \right) = \int\limits_{0}^\infty x^{p -1}e^{-x}\dx, \Re x > \eps$.
+\end{definition}
+\begin{properties}
+    \begin{enumerate}
+        \item $\Gamma$ --- голомофорная функция на  $\left\{ p\!: \Re p > 0 \right\}$. $\Gamma^{\left(n  \right) }(p) = \int\limits_{0}^{\infty} x^{p = 1} (\log x)^n e^{-x} \dx$. 
+
+            Доделать.
+        \item $\Gamma (p + 1) = p\Gamma(p)$, если $\Re p > 0$.  $\Gamma(p+1) = \int\limits_{0}^{+\infty} x^{p}e^{-x}\dx = \int\limits_{0}^{\infty}  px^{p - 1}e^{-x}\dx = p\Gamma(p)$.
+        \item $\Gamma(\frac{1}{2}) = \sqrt{\pi}$, $\Gamma(\frac{1}{2}) = \int\limits_{0}^{\infty} \frac{e^{-x}\dx}{\sqrt{x} } = 2 \int\limits_{0}^{\infty} e^{-t^2}\dd{t} = \sqrt{\pi}  $.
+        \item $\Gamma(n + \frac{1}{2}) = \sqrt{\pi} \frac{(2n-1)!!}{2^n}$ --- индукция.
+        \item $\Gamma$ строго выпукла при  $p \in \left( 0, +\infty \right)$.
+        \item $\Gamma(p) \sim \frac{1}{p}$ при $p \to 0+$, так как  $\Gamma(p) = \frac{\Gamma(p+1)}{p}$.
+    \end{enumerate}
+\end{properties}
+\begin{consequence}
+    $\Gamma$ может быть продолжена на  $\CC$ как мероморфная функция с простыми полюсами в  $z \le 0$.
+\end{consequence}
+\begin{proof}
+    Используем свойство номер 2. $\Gamma(p) = \frac{\Gamma(p+1)}{p} = \ldots = \frac{\Gamma(p+n)}{p(p+1) \cdot \ldots \cdot }, n > -\Re p$.
+\end{proof}
+\begin{definition}
+    $B(p, q) = \int\limits_{0}^1 x^{p - 1}(1-x)^{q - 1}\dx, \Re p > 0, \Re q > 0$.
+\end{definition}
+\begin{theorem}
+    $B(p, q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p + q)}$.
+\end{theorem}
+\begin{proof}
+    $\Gamma(p) \cdot \Gamma(q) = \int\limits_{0}^{+\infty} \int\limits_{0}^{+\infty} x^{p -1}y^{q - 1}e^{-x -y}\dy \dx = \left/ x + y = u, x = x \right/ \int\limits_{0}^{\infty} \int\limits_{x}^{\infty} x^{p - 1}\left( u-x \right)^{q - 1}e^{-u}\dd{u}\dx = \int\limits_{0}^{\infty} \int\limits_{0}^{u} x^{p - 1}(u-x)^{q - 1}e^{-u}\dx\dd{u} = \left/ x = u - v, u = y \right/ \int\limits_{0}^{\infty} \int\limits_{0}^{1}  v^{p - 1}u^{p - 1}u^{q - 1}\left(1 - v  \right)^{q - 1} e^{-u} u \dd{v} \dd{u} = \int\limits_{0}^{\infty}u^{p+q-1}e^{-u} \dd{u} B(p, q)$.
+\end{proof}
+\begin{lemma}
+    $\forall p, q\!: \Re q > 0 \land \Re p > 0 \implies B(p, q) = \int\limits_{0}^{\infty} \frac{t^{p - 1}\dd{t}}{(1+t)^{p+q}}$.
+\end{lemma}
+\begin{proof}
+    $B(p, q) = \int\limits_{0}^{1} x^{p-1}(1-x)^{q - 1}\dx =  \left / \begin{array}{c} x = \frac{t}{t+1} \\ \dx = \frac{\dd{t}}{(1+t)^2} \end{array}\right / \int\limits_{0}^{\infty} \frac{t^{p - 1}}{(1+t)^{p-1}} \cdot \frac{1}{(t+1)^{q - 1}} \frac{\dd{t}}{(1+t)^{2}}$
+\end{proof}
+\begin{theorem}[Формула дополнения]
+    $\forall p\!: \Gamma(p)\Gamma(1-p) = \frac{\pi}{\sin \left( \pi p \right)}$.
+\end{theorem}
+\begin{proof}
+    $B(1, 1-p) = \Gamma(p) \cdot \Gamma(1-p) = \int\limits_{0}^{\infty} \frac{t^{p - 1}\dd{t}}{1+t} = \frac{\pi}{\sin \left( \pi p \right)}$ при $\Re p > 0$. Следовательно теорема выполняется для  $\Re p > 0$. Но по теореме о единственности функции всюду равны, так как равны на открытом множестве.
+\end{proof}
+\begin{lemma}
+    Пусть  $t >0, u \in \left[ 0, t \right]$.
+
+    Тогда $e^{-u}\left( 1 - \frac{u}{t} \right) ^{u} \le \left( 1 - \frac{u}{t} \right) ^t \le  e^{-u}$.
+\end{lemma}
+\begin{proof}
+    Известно, что $e \ge \left( 1+\frac{1}{x} \right)^x \ge e \left( 1+\frac{1}{x} \right)^{-1}, x > 0$. Тогда $e^{-1} \le \left( 1 - \frac{1}{1+x} \right) ^{x} \le e^{-1}\left( 1-\frac{1}{a+X} \right)$. Заменим $1+x=y$, тогда получаем  $e^{-1} \le \left( 1 - \frac{1}{y} \right)^{y - 1} \le e^{-1} (1-\frac{1}{y}) \iff e^{-1}(1 - \frac{1}{y}) \le \left( 1-\frac{1}{y} \right)^y \le  e^{-1} \iff e^{-u}\left( 1-\frac{1}{y} \right)^u \le  \left( 1-\frac{1}{y} \right)^{uy} \le  e^{-u}$. $y = \frac{t}{u}$.
+\end{proof}
+\begin{theorem}
+    Пусть $a > 0$. Тогда  $\Gamma(t+a) \sim t^a \Gamma(t), t \to +\infty$.
+\end{theorem}
+\begin{proof}
+    Для этого докажем, что $\Gamma(t+a+1) \sim t^{a} \Gamma(t+1)$, отсюда следует теорема, так как $(t+1)^{a} \sim t^a$.
+
+    $\frac{\Gamma(t+1)\Gamma(a)}{\Gamma(t+1+a)} = B(a, t+1) = \int\limits_{0}^{1} x^{a - 1}(1-x)^t \dx \underset{x = \frac{u}{t}}{=} t^{-a}\int\limits_{0}^{t} u^{a - 1}\left( 1 - \frac{u}{t} \right)^{t} \dd{t}$.
+
+    $t^{-a} \int\limits_{0}^{t} u^{a - 1}\left( 1 - \frac{u}{t} \right)^{t} \dd{u} \le t^{-a} \int\limits_{0}^{t} u^{a-1}e^{-u}\dd{u} \le t^{-a} \Gamma(a)$.
+
+    Пусть $\eps > 0$, мы хотим доказать, что  $t^{-a} \int\limits_0^{t}u^{a-1}\left( 1 - \frac{u}{t} \right)^{t}\dd{u} \ge t^{-a} \Gamma(a) (1-\eps)$.
+
+    $t^{-a} \int\limits_{0}^{t} u^{a - 1}\left( 1-\frac{u}{t} \right)^{t} \dd{u} \ge  t^{-a} \int\limits_{0}^{t}u^{a-1}e^{-u} \left( 1-\frac{u}{t} \right)^{t} \ge  t^{-a} \int\limits_{0}^{R}u^{a-1}e^{-u} \left( 1-\frac{u}{t} \right)^{u} \dd{u} \ge  t^{-a} \int\limits_{0}^{R} u^{a - 1}e^{-u} \dd{u} \cdot \left( 1-\frac{R}{t} \right)^{R} \ge  t^{-a}\Gamma(a) (a-1)$. Не уверен.
+\end{proof}
+\begin{consequence}[Формула Валлиса]
+    $\frac{(2n-1)!!}{(2n)!!} \sqrt{\pi} \to \frac{1}{\sqrt{\pi}}$.
+\end{consequence}
+\begin{proof}
+    $\frac{(2n-1)!!}{(2n)!!} = \frac{\Gamma(n+\frac{1}{2})}{2^n\Gamma(n+1)} \sqrt{\pi}$.
+\end{proof}
+\begin{consequence}
+    $\Gamma(p) = \lim\limits_{n \to +\infty} n^p \frac{n!}{p(p+1) \cdot \ldots \cdot (p+n)}\quad \forall p > 0$.
+\end{consequence}
+\begin{proof}
+    $\Gamma(p) = \lim\limits_{n \to +\infty} \frac{\Gamma(p+n)}{p(p+1) \cdot \ldots \cdot (p+n-1)} = \lim\limits_{n \to +\infty} \frac{n^p \Gamma(n)}{p(p+1) \cdot \ldots \cdot (p+n-1)} = \lim\limits_{n \to +\infty} n^p \frac{n!}{p (p+1) \cdot \ldots \cdot (p+n)}$
+\end{proof}

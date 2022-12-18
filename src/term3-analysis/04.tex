@@ -1,0 +1,272 @@
+%!Tex Root=**/conspect.tex
+%!TeX program = xelatex
+Пусть $H$ --- векторное простанство над  $\CC$.
+ \begin{definition}
+    Полутора-линейная форма --- функция $\left \langle \cdot, \cdot \right\rangle\!: H \times H \to \CC$, такая что $\forall x, y, z \in H, a, b \in \CC \left< ax+by, z \right> = a \left<x, z \right> + b\left<y,z \right>, \left<z, ax+by \right> = \overline{a} \left<z,x \right>+\overline{b}\left<z, y \right>$.
+\end{definition}
+\begin{definition}
+   Полутора-линейная форма называется скалярным произведением, если $\forall x, y \!: \left<x, y \right> = \overline{\left<y, x \right>}, \quad \forall x \in H \left<x,x \right> \ge 0, \left<x, x \right> = 0 \iff x = 0$. 
+\end{definition}
+\begin{lemma}
+    $\left< \cdot, \cdot \right>$ --- скалярное произведение, то $\left| \left<x, y \right>^2 \right| \le  \left<x,x \right> \left<y,y \right>$
+\end{lemma}
+\begin{lemma}
+    Положим $\left| x \right| = \sqrt{\left<x,x \right>}$, тогда $\| \cdot \|$ --- норма на $H$.
+\end{lemma}
+\begin{definition}
+    $(H, \left< \cdot , \cdot  \right>)$ --- Гильбертово пространство, если $\left< \cdot, \cdot  \right>$ скалярное пространство и $H$ полно как метричское пространство с метрикой $\rho(x, y) = \| x - y\|$.
+\end{definition}
+\begin{example}
+    \begin{enumerate}
+        \item $\CC^n, \left<z, w \right> = \sum\limits_{i = 1}^{n} z_i \overline{w_i}$.
+        \item $l^2 = \left\{ (a_i)_{i = 1}^{+\infty} \subset \CC^{\N}  \mid \sum\limits_{n=1}^{+\infty} |a_i|^2 < \infty\right\}$, $\left<a,b \right> \coloneqq \sum\limits_{i=1}^{+\infty} a_i \overline{b_i}$.
+        \item $\left\{ f\!: [-\pi, \pi] \to \CC \mid f\text{ --- непрерывна} \right\} = H, \left<f, g \right>_H = \int\limits_{-\pi}^{\pi} f(x)\overline{g(x)}\dx$. Но $H$ не полно. Но существует единственное пополнение $H$. Это множество $L^2(-\pi, \pi)$. 
+    \end{enumerate}
+\end{example}
+\begin{theorem}
+    $l^2$ --- Гильбертово пространство.
+\end{theorem}
+\begin{proof}
+    Надо показать, что $l^2$ --- полно.  Пусть  $a^{(n)} \in l^2$ --- фундаментальная последовательность. Пусть $i \in \N$, тогда  $a_i^{(n)}$ --- это тоде фундаментальная последовательность, так как $\left| a_i^{(n)} - a_i^{(m)} \right| \le  \| a^{(n)} - a^{(m)}\| \implies \exists a_i = \lim\limits_{n \to +\infty} a_i^{(n)}$, положим $a = (a_i)_{i=1}^{+\infty}$.
+\end{proof}
+\begin{remark}
+    $\left\{ \|a^{(n)}\| \mid n \in \N \right\}$ ограничено, так как  $a^{(n)}$ --- фундаментальная последовательность $\exists C > 0\!: \|a^{(n)}\| \le  C \forall n \implies \forall N >0 \sum\limits_{i=1}^{n} |a_i|^2 = \lim\limits_{n \to +\infty} \sum\limits_{i = 1}^N \left| a_i^{(n)} \right|^2 \le  C^2 \implies \sum\limits_{i = 1}^{+\infty} |a_i|^2 \le  C^2 \implies a \in l^2$.
+    Теперь остается показать почему $\lim\limits_{n \to +\infty} \|a - a^{(n)}\| = 0$. $\eps > 0, \exists R >0\!: \forall n, m \ge R \quad \|a^{(n)} - a^{(m)} | \le \eps \implies \forall N >0 \sum\limits_{i = 1}^N \|a_i - a_i^{(n)}|^2 = \|a - a^{(n)}\|^2 \le \eps^2$. 
+\end{remark}
+\begin{definition}
+    Линейный функционал на $H$ --- это линейное отображение $l\!: H \to \CC$. 
+
+    Ограниченный линейный функционал --- это такой $l$, для которого $\exists C > 0\!: \forall x \in H \left| l(x) \right| \le  C\|x\|$. 
+\end{definition}
+\begin{lemma}
+    $l\!: H \to \CC$ -- линейный функционал. Следующие условия эквивалентны:
+     \begin{enumerate}
+         \item $l$ --- непрерывная функция,
+         \item $l$ --- ограничена,
+         \item  $\sup\limits_{\|x\|=1} |l(x)| < \infty$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    $1 \implies 2$. Пусть $l$ не ограничена, тогда  $\exists x_i \in H\!: |l(x_i)| \ge  i \|x_i\| > 0$. Рассмотрим $y_i = \frac{x_i}{i \|x_i\|}, y_i \to 0, \|y_i\| = \frac{1}{i}$. Но модуль отображения $\ge 1$.
+
+    $2 \implies 3$ очевидно.
+
+     $3 \implies 2$ Пусть $C = \sup\limits_{\|x\| = 1} |l(x)|$, тогда рассмотрим $\|x\| \cdot \left| l(\frac{x}{\|x\|} \right| \le  C\|x\|$.
+
+     $2 \to 1$. очев.
+\end{proof}
+\Subsection{Пополнение метрических пространств}
+Пусть $(X, d)$ --- метрическое пространство,  $X$ --- полно, если  $\forall $ фундаментальная последовательность имеет предел. 
+\begin{definition}
+    $(\overline{X}, \overline{d})$ --- пополнение $(X, d)$, если  $\exists f\!: X \to \overline{X}\!:$
+    \begin{enumerate}
+        \item $f$ --- инъекция,
+        \item  $f$ сохраняет расстояние,
+        \item $\Cl (f(X)) = \overline{X}$,
+        \item $(\overline{X}, \overline{d})$ --- полное.
+    \end{enumerate}
+\end{definition}
+Тут была красивая диаграмма, я обязательно сделаю её.
+\begin{theorem}
+    $\forall (X, d)\!: (X, d)$ --- метрическое  $\implies \exists$ пополнение  $(\overline{X}, \overline{d})$.
+\end{theorem}
+\begin{proof}
+    Доказательство приведено неполное, полное доказательство --- упражнение для читателя.
+
+    Положим $\overline{X} = \left\{ (x_1, \ldots) \in X^{\N} \mid (x_1, \ldots, )\text{ --- фундаментальная} \right\} / \sim$, где $(x_1, \ldots, ) \sim (y_1, \ldots) \iff \lim\limits_{i \to +\infty} d(x_i, u_i) = 0$. Тогда $\overline{d}((x_i), (y_i)) = \lim\limits_{i \to \infty} d(x_i, y_i)$. Тогда $f\!: X \to \overline{X}, f(x) = (x, x, x, \ldots) \in \overline{X}$.  
+\end{proof}
+\begin{example}
+    Вещественные числа:  $\R = \overline{\Q}$.
+\end{example}
+\begin{exerc}
+    $f\!: [-\pi, \pi] \to \CC$ --- кусочно непрерывная, ограниченная, тогда $\exists f_n \in \CC([-\pi, \pi])$, такие что $\|f_n-f\|_{L^2\left( -\pi, \pi \right)} \xrightarrow{n \to \infty} 0 \implies$ можно считать, что $f \in L^2 \left( [-\pi, \pi] \right) $
+ \end{exerc}
+ \begin{remark}
+     $f \in L^2\left( [-\pi, \pi] \right)$ и $g \in C([-\pi, \pi])$, то $\left< f,g \right> = \int\limits_{-\pi}^{\pi} f(x)\overline{g(x)}\dx$.
+ \end{remark}
+ \begin{remark}
+     Пусть $H^{*}$ --- множество всех линейных функционалов. Тогда
+     \begin{enumerate}
+         \item $\|l\| = \sup\limits_{\|x\| = 1} |l(x)|$ --- это норма на $H^*$.
+         \item  $H \to H^*, x \mapsto l_x = \left< \cdot, x \right>, \|l_x\| = \|x\|$.
+     \end{enumerate}
+ \end{remark}
+\Subsection{Ортогональные системы}
+\begin{remark}
+Здесь и далее $H$ --- гильбертово пространство.
+\end{remark}
+
+\begin{definition}
+   Ряд $\sum\limits_{i = 1}^{+\infty} x_i$ сходится, если $\left\{ \sum\limits_{n=1}^{n} x_i \right\} $ --- последовательность Коши. 
+\end{definition}
+\begin{remark}
+    $\sum\limits_{i=1}^{+\infty} x_i$ сходится $\not \implies \sum\limits_{i= 1}^{+\infty} \|x_i\|$ сходится.
+\end{remark}
+\begin{example}
+    $H = l^2$,  $x_k = (0, 0, \ldots, \frac{1}{k}, 0, \ldots)$. Тогда ряд сходится, и $\sum x_k = (1, \frac{1}{2}, \ldots)$. Но $\sum \|x\| = \sum \frac{1}{k} = \infty$.
+\end{example}
+\begin{lemma}
+    $\sum\limits_{x \ge  1} x_i$ и $l\!: H \to \CC$ --- непрерывный линейный функционал, тогда  \[
+    l(\sum\limits_{i \ge  1} x_i) = \sum\limits_{i \ge 1} l(x_i)
+    .\] 
+\end{lemma}
+\begin{proof}
+    $l\left( \sum\limits_{i \ge  1} x_i \right) = \lim\limits_{n \to \infty} l(\sum\limits_{i = 1}^n x_i) = \lim \sum\limits_{i=1}^n l(x_i) = \sum\limits_{i \ge  1} l(x_i)$
+\end{proof}
+\begin{definition}
+    $e_1, \ldots \in H$ ортогональная система, если $e_i \neq 0 \quad \forall i, \left< e_i, e_j \right> = 0, i \neq j$.
+\end{definition}
+\begin{lemma}
+    $\left\{ v_i \right\}_{i = 1}^{+\infty}$ --- Ортогональная система, $e_1, \ldots \in \CC$, тогда 
+    \begin{enumerate}
+        \item $\sum_{n=1}^{\infty} c_n v_n$ сходится $\iff$ $\sum\limits_{i = 1}^{+\infty} |c_i|^2 \cdot \|v_i\|^2$ сходится.
+        \item $d_1, d_2, \ldots \in \CC$ и $\sum c_i \cdot  v_i, \sum d_i v_i$ сходятся, то $\left< \sum c_i v_i, \sum d_i, v_i \right> = \sum c_i \overline{d_i} \cdot  \|v_i\|^2$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item $\|\sum\limits_{i = n}^m c_i v_i\|^2 = \left<\sum\limits_{i = n}^m c_iv_i, \sum\limits_{j = n}^m c_j v_j \right> = \sum\limits_{i, j = n}^{m} c_i \overline{c_j} \left< v_i, v_j \right> = \sum\limits_{i = n}^m  |c_i|^2 \|v_i\|^2$. 
+        \item $\left< \sum\limits_{i = 1}^{+\infty} c_i v_i, \sum\limits_{j = 1}^{+\infty} \right> = \sum\limits_{i = 1} c_i \left<v_i, \sum\limits_{j=1}^{+\infty} d_jv_j \right> = \sum \sum c_i \overline{d_j} \left< v_i, v_j \right> = \sum\limits_{i = 1}^{+\infty} c_i \overline{d_i} \|v_i\|^2$.
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    $\sum\limits_{i = 1}^{\infty} c_iv_i = 0\iff c_i = 0\quad \forall i$.
+\end{remark}
+\Subsection{Абстрактные ряды Фурье}
+Пусть $H$ --- гильбертово пространство, $\left\{ v_1, \ldots \right\}$ --- ортогональная система, положим $c_i\left( x \right) \coloneqq \frac{\left<x, v_i \right>}{\|v_i\|^2}$
+\begin{definition}
+    Абоба
+\end{definition}
+\begin{lemma}
+    $\forall n \ge 1$, $x -- S_n(x) \perp v_i, i=1,\ldots, n$.
+\end{lemma}
+\begin{proof}
+    $\left< x - S_n(x), v_j \right> = \left< x - \sum\limits_{i = 1}^n c_i(x)v_i, v_j \right> = \left<x, v_j \right> - c_j(x) \|v_j\|^2 = 0$.
+\end{proof}
+\begin{remark}
+    $S_n(x)$ --- это проекция  $x$ на  $\{v_1, \ldots, v_n\}$.
+\end{remark}
+\begin{consequence}[Неравенство Бесселя]
+    Ряд Фурье $S(x)$ сходится  $\forall x \in H$ и  $\sum\limits_{i=1}^{+\infty} |c_i(x)|^2\cdot \|v_i\|^2 \le  \|x\|^2$
+\end{consequence}
+\begin{proof}
+    $\|x\|^2 = \|x - S_n(x) + S_n(x)\|^2 = \left<x - S_n(x) + S_n(x), x - S_n(x) + S_n(x) \right> = \|x-S_n(x)\|^2 + \|S_n(x)\|^2 \implies \|S_n(x)\|^2 \le  \|x\|^2$.
+\end{proof}
+\begin{theorem}[Рисса-Фишера]
+    $H$ --- гильбертово пространство, $v_1, \ldots$ --- ортогональная система, $x \in H$.
+
+    Тогда $S(x) - x \perp v_i, i = 1, \ldots$ и $S(x) = x \iff \|S\left(x \right) \| = \|x\|$.
+\end{theorem}
+\begin{proof}
+    $\left<S(x) - x, v_j \right> = \left<\sum\limits_{i = 1}^{+\infty}c_i(x) v_i - x, v_j \right> = 0 \implies S(x) - x \perp S_n(x) \implies S(x) - x \perp S(x)$, так как $\left<S(x) - x, S(x) \right> = \lim\limits_{n \to \infty} \left<S(x) - x, S_n(x) \right> = 0$.
+
+    $\|x\|^2 = \|x-S(x) + S(x)\|^2 = \left< x-S(x) + S(x), x - S(x) + S(x) \right> = \|x-S(x)\|^2 + \|S(x)\|^2 \implies \|x\|^2 = \|S(x)\|^2 \iff \|x-S(x)\|^2 = 0$.
+\end{proof}
+\begin{definition}
+    $H$ --- гильбертово пространство,  $\left\{ v_i \right\}_{i=1}^{+\infty}$ --- ортогональная система. Тогда $\left\{ v_i \right\}_{i=1}^{+\infty}$ --- ортогональный базис, если $\forall x \in H, S(x) = x$.
+\end{definition}
+\begin{remark}
+    ОБ --- это не базис Гамеля.
+\end{remark}
+\begin{remark}
+    $\left\{ v_i \right\}_{i = 1}^{+\infty}$ --- ортогональный базис, тогда $\left<x,y \right> = \sum\limits_{i=1}^{+\infty} c_i(x)\overline{c_i(y)}\|v_i\|^2 \quad \forall x, y \in H$.
+
+    В частности $H \to l^2, x \mapsto \left( \frac{c_1(x)}{\|v_1\|}, \frac{c_2(x)}{\|v_2\|}, \ldots \right)$ --- изометрия.
+\end{remark}
+\begin{theorem}
+    $H$ --- гильбертово пространство,  $\left\{ v_1, v_2,\ldots \right\}$ --- ортогональная система. Тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $\left\{ v_1, v_2,\ldots \right\}$ --- ортогональный базис,
+        \item $\forall x \in H\!: x \perp v_i \quad \forall i \implies x = 0$,
+        \item $\Cl \Span \left\{ v_1, v_2,\ldots \right\}  = H$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    $1 \implies 3$ очевидно, так как $x = S(x) = \lim\limits_{n \to \infty} S_n(x)$
+
+    $3 \implies 2$. $x \perp \Span \left\{ v_1, v_2, \ldots \right\} \implies x \perp \Cl \Span \left\{ v_1, v_2, \ldots \right\}$ ($y_n \to y$,  $\left< x, y_n \right> \to \left< x, y \right>$).
+
+    $2 \implies 1$ $S(x) - x \perp v_i\quad \forall i \implies S(x) - x = 0 \implies S(x) = x$.
+\end{proof}
+\Subsection{Тригонометрические ряды Фурье}
+Будем жить в $L^2(-\pi, \pi)$. $C_{2 \pi} = \left\{ f\!: \R \to \CC \mid \substack{f\text{ непр.}\\f(x+2\pi) = f(x) \forall x} \right\}$.
+
+\begin{enumerate}
+    \item $f \in L^2(-\pi, \pi)$, тогда $\forall \phi \in C_{2 \pi} \int\limits_{-\pi}^{\pi} \phi(x)f(x) \dx$ корректно определены.
+    \item Если $f\!: \R \to  \CC$ $2\pi$-периодична и имеет не более чем счетное число разрывов, то $f \in L^2(-\pi, \pi) \iff \int\limits_{-\pi}^{\pi} \left| f(x) \right| ^2 \dx < \infty $ 
+\end{enumerate}
+В $L^2(-\pi, \pi)$ есть естественная ОС: $V_n = e^{int}$.
+\begin{enumerate}
+    \item $v_n \perp v_m$, если  $n \neq m$:  $\left<v_n, v_m \right> = \int\limits_{-\pi}^{\pi} e^{i(n-m)t\dd{t}} = 0$.
+    \item $\|v_n\|^2 = \int\limits_{-\pi}^{\pi} 1dt = 2\pi$.
+\end{enumerate}
+\begin{consequence}
+    $1, \sin t, \sin (2t), \ldots, \cos t, \cos(2t),\ldots$ -- это ОС в $L^2(-\pi, p)$.
+\end{consequence}
+\begin{proof}
+    $\begin{pmatrix} e^{i n t} \\ e^{- i n t} \end{pmatrix} = \begin{pmatrix} \cos (nt) + i\sin(nt) \\ \cos(nt) - i\sin(nt) \end{pmatrix} $
+\end{proof}
+Цель --- доказать, что эта ОС --- ОБ.
+\begin{lemma}[Лемма Римана-Лебега]
+    Пусть $a < b \in \R, f\!: [a, b] \to \CC$ --- непрерывная функция,
+
+    Тогда  $\lim\limits_{n \to +\infty} \int\limits_{a}^{b} f(x)\sin(nx)\dx = 0$.
+\end{lemma}
+\begin{proof}
+    $\sin (x+\pi) = -\sin(x)$.
+
+    $\int\limits_{a}^{b-\frac{\pi}{n}} f(x)\sin(nx)\dx = -\int\limits_{a+\frac{\pi}{n}}^{b} f\left(x  +\frac{\pi}{n}\right)  \sin(nx)\dx$.
+
+    Тогда $\int\limits_{a}^{b} f(x)\sin(nx)\dx = \int\limits_{a}^{b-\frac{\pi}{n}} f(x)\sin(nx)\dx + O(\frac{1}{n}) = \frac{1}{2}\left( \int\limits_{a}^{b-\frac{\pi}{n}} f(x)\sin(nx)\dx - \int\limits_{a+\frac{\pi}{n}}^{b} f(x+\frac{\pi}{n}) \sin(nx)\dx    \right) + O(\frac{1}{n}) = \frac{1}{2} \int\limits_{a+\frac{\pi}{n}}^{b-\frac{\pi}{n}}(f(x) - f(x +\frac{\pi}{n})) \sin(nx)\dx +O(\frac{1}{n}) = O(\omega_f(\frac{\pi}{n}) + O(\frac{1}{n}) \xrightarrow{n \to \infty} 0$.
+\end{proof}
+\begin{consequence}
+    $f \in L^2(-\pi, \pi)$, то $\lim\limits_{n \to \infty} \int\limits_{a}^{b} f(x)\sin(nx) \dx = 0$.
+\end{consequence}
+\begin{proof}
+    $f_k \in C_{2 \pi}, f_k \to f$.
+
+    $\left| \int\limits_{a}^{b} f_k(x)\sin(nx)\dx - \int\limits_{a}^{b} f(x)\sin(nx) \dx    \right| \le  \|f_k - f\|_{L^2} \le  \eps$, а также $\left| \int\limits_{a}^{b} f_k(x)\sin(nx)\dx \right| \le  \eps$, то $\left| \int\limits_{a}^{b} f(x) \sin (nx) \dx  \right| \le  \eps + \eps(b-a)$.
+\end{proof}
+\begin{definition}
+    $f \in L^2(-\pi, \pi)$. Тригонометрические ряд Фурье $f$, это ряд Фурье по ОС  $\left\{ 1, \sin t, \cos t,\ldots \right\}$, $S(f) = \frac{a_o(f)}{2} + \sum\limits_{n \ge  1} a_n(f) \cos(nx) + b_n(f)\sin(nx)$, где $a_n = \frac{1}{n} \int\limits_{-\pi}^{\pi} \cos(nx) \dx, b_n = \frac{1}{n} \int\limits_{-\pi}^{\pi} f(x)\sin(nx)\dx, n \ge 0$.
+
+    $S_N(f) = \frac{a_n(f)}{2} + \sum\limits_{n = 1}^{N} a_n(f) \cos(nx) + b_n(f)\sin(nx)$.
+\end{definition}
+
+Рассмотрим произвольный $S_n(f) = \frac{a_0(f)}{2} + \sum\limits_{n=1}^{N}\left( a_n(f) \cos(nx) + b_n(f) \sin(nx) \right) = \frac{1}{2\pi} \int\limits_{-\pi}^{\pi} f(t)\dd{t}+ \sum\limits_{n=1}^{N} \frac{1}{\pi} \int\limits_{-\pi}^{\pi} \left( f(t) \cos(nt)\cos(nx) +f(t)\sin(nt)\sin(nx) \right) \dd{t} = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(t)\left( \frac{1}{2} + \sum\limits_{n=1}^N \cos(n(x-t)) \right) \dd{t} = \frac{1}{\pi}\int\limits_{-\pi}^{\pi} f(x-t) D_N(t)\dd{t} $, $D_N(t) = \frac{1}{2} + \sum\limits_{n=1}^N \cos(nt)$.
+\begin{definition}
+    $D_N(t)$ называется ($N$-м) ядром Дирихле.
+\end{definition}
+\begin{properties}
+    \begin{enumerate}
+        \item $D_N(t)$ --- четная,  $2\pi$ периодическая.
+        \item $\frac{1}{\pi} \int\limits_{-\pi}^{\pi} D_N(t)\dd{t} = 1$.
+        \item $D_N(t) = \frac{\sin(N+\frac{1}{2})}{2\sin(\frac{t}{2})}$.
+    \end{enumerate}
+\end{properties}
+\begin{proof}
+   $2 \sin (\frac{t}{2}) D_n(t) = \sin \frac{t}{2} + 2 \sum\limits_{n=1}^N \sin(\frac{t}{2})\cos(nt) = \sin (\frac{t}{2}) \sum\limits_{n=1}^N(\sin(n+\frac{1}{2})t - \sin(m-\frac{1}{2})t = \sin(N+\frac{1}{2})t$ 
+\end{proof}
+\begin{lemma}
+    $\forall \delta > 0$ имеем  $S_N(f) = \frac{1}{\pi} \int\limits_{0}^{\delta} D_N(t)(f(x+t) + f(x - t)) \dd{t} + o(1), N \to \infty$.
+\end{lemma}
+\begin{proof}
+    $S_N(t) = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} D_N(t) f(x-t)\dd{t} =  1\pi \int\limits_{0}^{\pi} D_N(t) (f(x+t)+f(x-t))\dd{t} = \frac{1}{\pi} \int\limits_{0}^{\delta}D_N(t) (f(x+t) + f(x-t)\dd{t} + \frac{1}{\pi} \int\limits_{\delta}^{\pi} \frac{f(x+t)+f(x-t)}{2\sin(\frac{t}{2})}\sin((N+\frac{1}{2})t)\dd{t}$.
+\end{proof}
+\begin{consequence}
+    $f, g \in L^2(-\pi, \pi), x \in \R$ и $\exists \delta > 0\!L f(y) = g(y) \forall \in \left( x - \delta, x + \delta \right)$, тогда $S(f)(y) = S(g)(y) \forall y \in \left( x - \delta, x + \delta \right) $, для которого $S(f)(y)$ сходится.
+\end{consequence}
+\begin{proof}
+    $S_N(f-g)(y) = \int\limits_{0}^{\delta-(x-y)} D_N(t)(f(x+t)-g(x+t) + f(x-t)-g(x-t))\dd{t} + o(1) = o(1) \implies S(f-g)\left( y \right) = 0$.
+\end{proof}
+\begin{theorem}[Признак Дини]
+    Пусть $f\!: \R \to \CC$  $2\pi$-периодическая, $f \in L^2(-\pi, \pi), \exists x \in \R\!: f(x+t) + f(x-t) - 2f_0 = O(t)$ при $t \to 0$.
+
+    Тогда  $S(f)(x)$ сходится и  $S(f)(x) = f_0$
+\end{theorem}
+\begin{proof}
+    $S_N(f)(x) = \int\limits_{0}^{\delta} D_N(t) (f(x+t)+f(x-t)) \dd{t} + o\left(1  \right) = \int\limits_{0}^{\delta} D_N(t)(2f_0 + O(t))\dd{t} + \int\limits_{0}^{\delta} D_N(t) \cdot O(t) \dd{t} o(1) = S_N(f_0) + o(1) + \int\limits_{0}^{\delta} \frac{\sin(N+\frac{1}{2})t}{2 \sin(\frac{t}{2})} \cdot O(t) \dd{t} + o(1) = f_0 + O(\delta) + o(1) \xrightarrow{N \to \infty} f_0 + O(\delta) \to f_0$.
+\end{proof}
+\begin{consequence}
+    Если $f$ --- дифференцируема в  $x$, то  $S(f)(x) = f(x)$.
+\end{consequence}
